@@ -22,7 +22,7 @@ class AuthPage extends StatelessWidget {
           if (!ctx.mounted) return;
           final profile = result.fold((_) => null, (p) => p);
           if (profile?.isOnboardingComplete == true) {
-            ctx.go(AppRouter.home);
+            ctx.go(AppRouter.home, extra: profile);
           } else {
             ctx.go(AppRouter.onboarding);
           }

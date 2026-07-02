@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/di/app_dependencies.dart';
 import '../../../../core/navigation/app_router.dart';
+import '../../../../core/usecases/usecase.dart';
 import '../../../../core/utils/responsive.dart';
 import '../../../../shared/theme/app_theme.dart';
 import '../bloc/onboarding_bloc.dart';
@@ -56,9 +58,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
           _showSnackBar(context, state.errorMessage!, isError: true);
         }
 
-        // Navigate on success
+        // Navigate on success — load saved profile and pass it to HomeShell
         if (state.status == OnboardingStatus.success) {
-          context.go(AppRouter.home);
+          AppDependencies.getUserProfile(const NoParams()).then((result) {
+            if (!context.mounted) return;
+            final profile = result.fold((_) => null, (p) => p);
+            context.go(AppRouter.home, extra: profile);
+          });
         }
 
         // Show generic errors
@@ -69,7 +75,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
       },
       builder: (context, state) {
         return Scaffold(
-          backgroundColor: AppColors.background,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           body: SafeArea(
             child: Column(
               children: [
@@ -133,15 +139,27 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   onTap: () => context
                       .read<OnboardingBloc>()
                       .add(const OnboardingPreviousStep()),
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: AppColors.surfaceVariant,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: const Icon(Icons.arrow_back_ios_new,
-                        size: 16, color: AppColors.textPrimary),
+                  child: Builder(
+                    builder: (ctx) {
+                      final cs = Theme.of(ctx).colorScheme;
+                      final isRtl =
+                          Localizations.localeOf(ctx).languageCode == 'ar';
+                      return Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: cs.surfaceContainerHighest,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Icon(
+                          isRtl
+                              ? Icons.arrow_forward_ios
+                              : Icons.arrow_back_ios_new,
+                          size: 16,
+                          color: cs.onSurface,
+                        ),
+                      );
+                    },
                   ),
                 )
               else

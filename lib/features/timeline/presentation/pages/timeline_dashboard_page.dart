@@ -64,7 +64,7 @@ class _TimelineDashboardPageState extends State<TimelineDashboardPage> {
         // ── Tablet two-column layout ─────────────────────────────────────────
         if (context.isTablet) {
           return Scaffold(
-            backgroundColor: AppColors.background,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             floatingActionButton: fab,
             body: SafeArea(
               child: Row(
@@ -92,7 +92,7 @@ class _TimelineDashboardPageState extends State<TimelineDashboardPage> {
 
         // ── Phone single-column layout ───────────────────────────────────────
         return Scaffold(
-          backgroundColor: AppColors.background,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           floatingActionButton: fab,
           body: SafeArea(
             child: Column(
@@ -507,10 +507,15 @@ class _DateNavigator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isToday = _checkIsToday(selectedDate);
+    final cs = Theme.of(context).colorScheme;
+    final isRtl =
+        Localizations.localeOf(context).languageCode == 'ar';
 
     return Row(
       children: [
-        _NavButton(icon: Icons.chevron_left, onTap: onPrev),
+        _NavButton(
+            icon: isRtl ? Icons.chevron_right : Icons.chevron_left,
+            onTap: onPrev),
         const SizedBox(width: 8),
         Expanded(
           child: GestureDetector(
@@ -518,10 +523,10 @@ class _DateNavigator extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               decoration: BoxDecoration(
-                color: AppColors.surface,
+                color: cs.surface,
                 borderRadius: BorderRadius.circular(AppRadius.md),
                 border: Border.all(
-                  color: isToday ? AppColors.primary : AppColors.surfaceVariant,
+                  color: isToday ? cs.primary : cs.outlineVariant,
                   width: isToday ? 2 : 1.5,
                 ),
               ),
@@ -532,8 +537,8 @@ class _DateNavigator extends StatelessWidget {
                     Container(
                       width: 8,
                       height: 8,
-                      decoration: const BoxDecoration(
-                        color: AppColors.primary,
+                      decoration: BoxDecoration(
+                        color: cs.primary,
                         shape: BoxShape.circle,
                       ),
                     ),
@@ -546,9 +551,7 @@ class _DateNavigator extends StatelessWidget {
                           : DateFormat('EEEE, MMM d').format(selectedDate),
                       style: AppTextStyles.titleMedium.copyWith(
                         fontSize: 14,
-                        color: isToday
-                            ? AppColors.primary
-                            : AppColors.textPrimary,
+                        color: isToday ? cs.primary : cs.onSurface,
                       ),
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
@@ -560,7 +563,9 @@ class _DateNavigator extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 8),
-        _NavButton(icon: Icons.chevron_right, onTap: onNext),
+        _NavButton(
+            icon: isRtl ? Icons.chevron_left : Icons.chevron_right,
+            onTap: onNext),
       ],
     );
   }
@@ -581,17 +586,18 @@ class _NavButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     return GestureDetector(
       onTap: onTap,
       child: Container(
         width: 40,
         height: 40,
         decoration: BoxDecoration(
-          color: AppColors.surface,
+          color: cs.surface,
           borderRadius: BorderRadius.circular(AppRadius.md),
-          border: Border.all(color: AppColors.surfaceVariant, width: 1.5),
+          border: Border.all(color: cs.outlineVariant, width: 1.5),
         ),
-        child: Icon(icon, size: 20, color: AppColors.textPrimary),
+        child: Icon(icon, size: 20, color: cs.onSurface),
       ),
     );
   }

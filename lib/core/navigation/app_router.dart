@@ -64,7 +64,9 @@ class AppRouter {
           path: home,
           pageBuilder: (context, state) => _fadePage(
             key: state.pageKey,
-            child: HomeShell(profile: state.extra as UserProfile?),
+            child: HomeShell(
+              profile: state.extra as UserProfile? ?? existingProfile,
+            ),
           ),
         ),
       ],

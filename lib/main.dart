@@ -80,9 +80,22 @@ void main() async {
     authUser = guestResult.fold((_) => null, (u) => u);
   }
 
+  // Pre-load settings so the first frame uses the correct theme/locale
+  // instead of the ThemeMode.system flash.
+  final settingsResult =
+      await AppDependencies.loadSettings(const NoParams());
+  String initialThemeMode = 'system';
+  String initialLanguage = 'en';
+  settingsResult.fold((_) {}, (s) {
+    initialThemeMode = s.themeMode;
+    initialLanguage = s.language;
+  });
+
   runApp(ProductiveMuslimApp(
     existingProfile: existingProfile,
     authUser: authUser,
+    initialThemeMode: initialThemeMode,
+    initialLanguage: initialLanguage,
   ));
 }
 
@@ -100,11 +113,15 @@ ThemeMode _parseThemeMode(String mode) {
 class ProductiveMuslimApp extends StatefulWidget {
   final UserProfile? existingProfile;
   final AuthUser? authUser;
+  final String initialThemeMode;
+  final String initialLanguage;
 
   const ProductiveMuslimApp({
     super.key,
     this.existingProfile,
     this.authUser,
+    this.initialThemeMode = 'system',
+    this.initialLanguage = 'en',
   });
 
   @override
@@ -183,10 +200,10 @@ class _ProductiveMuslimAppState extends State<ProductiveMuslimApp>
         builder: (context, settingsState) {
           final themeMode = settingsState is SettingsLoaded
               ? _parseThemeMode(settingsState.settings.themeMode)
-              : ThemeMode.system;
+              : _parseThemeMode(widget.initialThemeMode);
           final locale = settingsState is SettingsLoaded
               ? Locale(settingsState.settings.language)
-              : const Locale('en');
+              : Locale(widget.initialLanguage);
           return MaterialApp.router(
             title: 'Productive Muslim',
             debugShowCheckedModeBanner: false,

@@ -11,9 +11,12 @@ import '../../../../features/backup/presentation/bloc/backup_bloc.dart';
 import '../../../../features/onboarding/domain/entities/user_profile.dart';
 import '../../../../features/ramadan/presentation/pages/ramadan_settings_page.dart';
 import '../bloc/settings_bloc.dart';
+import 'package:flutter/foundation.dart' show kDebugMode;
+
 import 'appearance_page.dart';
 import 'data_page.dart';
 import 'notifications_page.dart';
+import 'prayer_debug_page.dart';
 import 'prayer_settings_page.dart';
 import 'profile_edit_page.dart';
 
@@ -44,7 +47,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: CustomScrollView(
         slivers: [
           _buildAppBar(),
@@ -124,6 +127,20 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                   ],
                 ),
+                if (kDebugMode)
+                  _buildSection(
+                    ctx: context,
+                    title: 'Developer',
+                    items: [
+                      _SettingsTile(
+                        icon: Icons.bug_report_outlined,
+                        iconColor: Colors.orange,
+                        title: 'Prayer Debug',
+                        subtitle: 'Prayer times, location, cache status',
+                        onTap: () => _push(const PrayerDebugPage()),
+                      ),
+                    ],
+                  ),
                 const SizedBox(height: 40),
                 _buildVersion(),
                 const SizedBox(height: 32),
@@ -137,7 +154,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget _buildAppBar() {
     return SliverAppBar(
-      backgroundColor: AppColors.background,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       floating: true,
       snap: true,
       elevation: 0,
@@ -162,14 +179,14 @@ class _SettingsPageState extends State<SettingsPage> {
             child: Text(
               title.toUpperCase(),
               style: AppTextStyles.labelSmall.copyWith(
-                color: AppColors.textHint,
+                color: Theme.of(ctx).colorScheme.onSurface.withValues(alpha: 0.4),
                 letterSpacing: 1.2,
               ),
             ),
           ),
           Container(
             decoration: BoxDecoration(
-              color: AppColors.surface,
+              color: Theme.of(ctx).colorScheme.surface,
               borderRadius: BorderRadius.circular(AppRadius.lg),
               boxShadow: [
                 BoxShadow(
@@ -184,10 +201,10 @@ class _SettingsPageState extends State<SettingsPage> {
                 for (int i = 0; i < items.length; i++) ...[
                   items[i],
                   if (i < items.length - 1)
-                    const Divider(
+                    Divider(
                       height: 1,
                       indent: 56,
-                      color: AppColors.surfaceVariant,
+                      color: Theme.of(ctx).colorScheme.outlineVariant,
                     ),
                 ],
               ],
