@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
@@ -49,14 +51,72 @@ class PrayerNotificationService {
     );
 
     // Register all channels on Android (no-op on iOS).
+    // Channel names are locale-aware: Arabic when device language is Arabic.
     final androidPlugin = _plugin.resolvePlatformSpecificImplementation<
         AndroidFlutterLocalNotificationsPlugin>();
-    for (final channel in NotificationChannels.all) {
+    final isArabic = Platform.localeName.startsWith('ar');
+    final channels = isArabic ? _arabicChannels() : NotificationChannels.all;
+    for (final channel in channels) {
       await androidPlugin?.createNotificationChannel(channel);
     }
 
     _initialized = true;
   }
+
+  static List<AndroidNotificationChannel> _arabicChannels() => [
+    const AndroidNotificationChannel(
+      'prayer_adhan',
+      'أوقات الصلاة',
+      description: 'تنبيهات الأذان في وقت الصلاة',
+      importance: Importance.max,
+      playSound: true,
+      sound: RawResourceAndroidNotificationSound('adhan'),
+      enableLights: true,
+      enableVibration: true,
+      showBadge: true,
+    ),
+    const AndroidNotificationChannel(
+      'prayer_buffer',
+      'تذكير الصلاة',
+      description: 'تنبيهات قبل وقت الصلاة بدقائق',
+      importance: Importance.high,
+      enableLights: true,
+      enableVibration: true,
+      showBadge: false,
+    ),
+    const AndroidNotificationChannel(
+      'quran_reminder',
+      'تذكير القرآن',
+      description: 'تذكيرات تلاوة القرآن اليومية',
+      importance: Importance.defaultImportance,
+      showBadge: false,
+    ),
+    const AndroidNotificationChannel(
+      'habit_reminder',
+      'تذكير العادات',
+      description: 'تذكيرات متابعة العادات',
+      importance: Importance.defaultImportance,
+      showBadge: false,
+    ),
+    const AndroidNotificationChannel(
+      'iftar_adhan',
+      'وقت الإفطار',
+      description: 'أذان الإفطار عند المغرب في رمضان',
+      importance: Importance.max,
+      playSound: true,
+      sound: RawResourceAndroidNotificationSound('iftar_adhan'),
+      enableLights: true,
+      enableVibration: true,
+      showBadge: true,
+    ),
+    const AndroidNotificationChannel(
+      'general',
+      'عام',
+      description: 'إشعارات التطبيق العامة',
+      importance: Importance.low,
+      showBadge: false,
+    ),
+  ];
 
   /// Schedule all prayer notifications for the supplied days.
   static Future<void> schedulePrayerNotifications({

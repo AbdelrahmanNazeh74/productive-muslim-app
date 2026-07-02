@@ -24,13 +24,14 @@ class AnalyticsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     return Container(
       margin: EdgeInsets.fromLTRB(context.screenHPadding, 0, context.screenHPadding, 16),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: cs.surface,
         borderRadius: BorderRadius.circular(AppRadius.lg),
-        border: Border.all(color: AppColors.surfaceVariant, width: 1.5),
+        border: Border.all(color: cs.outlineVariant, width: 1.5),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,11 +42,12 @@ class AnalyticsCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title, style: AppTextStyles.titleMedium),
+                  Text(title,
+                      style: AppTextStyles.titleMedium.copyWith(color: cs.onSurface)),
                   if (subtitle != null)
                     Text(subtitle!,
                         style: AppTextStyles.bodyMedium
-                            .copyWith(fontSize: 12)),
+                            .copyWith(fontSize: 12, color: cs.onSurfaceVariant)),
                 ],
               ),
               if (trailing != null) trailing!,
@@ -68,6 +70,7 @@ class WeeklyScoreLineChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     if (series.points.isEmpty) {
       return const _EmptyChart(message: 'No score data yet');
     }
@@ -118,7 +121,7 @@ class WeeklyScoreLineChart extends StatelessWidget {
                 drawVerticalLine: false,
                 horizontalInterval: 25,
                 getDrawingHorizontalLine: (_) => FlLine(
-                  color: AppColors.stepInactive.withValues(alpha: 0.5),
+                  color: cs.outlineVariant.withValues(alpha: 0.5),
                   strokeWidth: 1,
                   dashArray: [4, 4],
                 ),
@@ -133,7 +136,7 @@ class WeeklyScoreLineChart extends StatelessWidget {
                     getTitlesWidget: (v, _) => Text(
                       '${v.toInt()}',
                       style: AppTextStyles.labelSmall
-                          .copyWith(fontSize: 10),
+                          .copyWith(fontSize: 10, color: cs.onSurfaceVariant),
                     ),
                   ),
                 ),
@@ -149,7 +152,7 @@ class WeeklyScoreLineChart extends StatelessWidget {
                       return Text(
                         series.points[i].shortLabel,
                         style: AppTextStyles.labelSmall
-                            .copyWith(fontSize: 9),
+                            .copyWith(fontSize: 9, color: cs.onSurfaceVariant),
                       );
                     },
                   ),
@@ -170,10 +173,9 @@ class WeeklyScoreLineChart extends StatelessWidget {
                   isStrokeCapRound: true,
                   dotData: FlDotData(
                     show: true,
-                    getDotPainter: (spot, _, __, ___) =>
-                        FlDotCirclePainter(
+                    getDotPainter: (spot, _, __, ___) => FlDotCirclePainter(
                       radius: 4,
-                      color: AppColors.surface,
+                      color: cs.surface,
                       strokeWidth: 2.5,
                       strokeColor: AppColors.primary,
                     ),
@@ -194,8 +196,7 @@ class WeeklyScoreLineChart extends StatelessWidget {
                 LineChartBarData(
                   spots: [
                     FlSpot(0, avgScore),
-                    FlSpot(
-                        (series.points.length - 1).toDouble(), avgScore),
+                    FlSpot((series.points.length - 1).toDouble(), avgScore),
                   ],
                   isCurved: false,
                   color: AppColors.gold.withValues(alpha: 0.6),
@@ -221,6 +222,7 @@ class PrayerBarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     return Column(
       children: [
         // Overall summary
@@ -232,11 +234,11 @@ class PrayerBarChart extends StatelessWidget {
               percent: analytics.overallRate,
               center: Text(
                 '${(analytics.overallRate * 100).round()}%',
-                style: AppTextStyles.labelLarge.copyWith(
-                    color: AppColors.primary, fontSize: 11),
+                style: AppTextStyles.labelLarge
+                    .copyWith(color: AppColors.primary, fontSize: 11),
               ),
               progressColor: AppColors.primary,
-              backgroundColor: AppColors.surfaceVariant,
+              backgroundColor: cs.surfaceContainerHighest,
               circularStrokeCap: CircularStrokeCap.round,
             ),
             const SizedBox(width: 16),
@@ -246,12 +248,12 @@ class PrayerBarChart extends StatelessWidget {
                 children: [
                   Text('Overall Prayer Rate',
                       style: AppTextStyles.titleMedium
-                          .copyWith(fontSize: 14)),
+                          .copyWith(fontSize: 14, color: cs.onSurface)),
                   Text(
                     'Best: ${analytics.bestPrayer} · '
                     'Needs work: ${analytics.weakestPrayer}',
                     style: AppTextStyles.bodyMedium
-                        .copyWith(fontSize: 12),
+                        .copyWith(fontSize: 12, color: cs.onSurfaceVariant),
                   ),
                 ],
               ),
@@ -285,6 +287,7 @@ class _PrayerBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Row(
@@ -294,20 +297,19 @@ class _PrayerBar extends StatelessWidget {
           SizedBox(
             width: 52,
             child: Text(stat.label,
-                style: AppTextStyles.bodyMedium.copyWith(fontSize: 13)),
+                style: AppTextStyles.bodyMedium
+                    .copyWith(fontSize: 13, color: cs.onSurface)),
           ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ClipRRect(
-                  borderRadius:
-                      BorderRadius.circular(AppRadius.full),
+                  borderRadius: BorderRadius.circular(AppRadius.full),
                   child: LinearProgressIndicator(
                     value: stat.rate,
-                    backgroundColor: AppColors.surfaceVariant,
-                    valueColor:
-                        AlwaysStoppedAnimation(_color),
+                    backgroundColor: cs.surfaceContainerHighest,
+                    valueColor: AlwaysStoppedAnimation(_color),
                     minHeight: 10,
                   ),
                 ),
@@ -315,7 +317,7 @@ class _PrayerBar extends StatelessWidget {
                 Text(
                   '${stat.completedCount}/${stat.totalDays} days',
                   style: AppTextStyles.labelSmall
-                      .copyWith(fontSize: 10),
+                      .copyWith(fontSize: 10, color: cs.onSurfaceVariant),
                 ),
               ],
             ),
@@ -335,7 +337,7 @@ class _PrayerBar extends StatelessWidget {
   }
 }
 
-// ─── HABIT COMPLETION LINE CHART ──────────────────────────────────────────────
+// ─── HABIT COMPLETION BAR CHART ───────────────────────────────────────────────
 class HabitCompletionChart extends StatelessWidget {
   final HabitAnalytics analytics;
 
@@ -343,6 +345,7 @@ class HabitCompletionChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     if (analytics.dailyRates.isEmpty) {
       return const _EmptyChart(message: 'No habit data yet');
     }
@@ -355,8 +358,7 @@ class HabitCompletionChart extends StatelessWidget {
           children: [
             _MiniKpi(
               label: 'Overall',
-              value:
-                  '${(analytics.overallRate * 100).round()}%',
+              value: '${(analytics.overallRate * 100).round()}%',
               color: AppColors.success,
             ),
             _MiniKpi(
@@ -374,10 +376,7 @@ class HabitCompletionChart extends StatelessWidget {
             BarChartData(
               maxY: 100,
               minY: 0,
-              barGroups: analytics.dailyRates
-                  .asMap()
-                  .entries
-                  .map((e) {
+              barGroups: analytics.dailyRates.asMap().entries.map((e) {
                 final rate = e.value.rate;
                 final color = rate >= 0.8
                     ? AppColors.success
@@ -390,9 +389,7 @@ class HabitCompletionChart extends StatelessWidget {
                     BarChartRodData(
                       toY: rate * 100,
                       color: color,
-                      width: analytics.dailyRates.length > 14
-                          ? 6
-                          : 12,
+                      width: analytics.dailyRates.length > 14 ? 6 : 12,
                       borderRadius: const BorderRadius.vertical(
                           top: Radius.circular(4)),
                     ),
@@ -405,7 +402,7 @@ class HabitCompletionChart extends StatelessWidget {
                 drawVerticalLine: false,
                 horizontalInterval: 50,
                 getDrawingHorizontalLine: (_) => FlLine(
-                  color: AppColors.stepInactive.withValues(alpha: 0.4),
+                  color: cs.outlineVariant.withValues(alpha: 0.4),
                   strokeWidth: 1,
                   dashArray: [4, 4],
                 ),
@@ -419,7 +416,7 @@ class HabitCompletionChart extends StatelessWidget {
                     getTitlesWidget: (v, _) => Text(
                       '${v.toInt()}%',
                       style: AppTextStyles.labelSmall
-                          .copyWith(fontSize: 9),
+                          .copyWith(fontSize: 9, color: cs.onSurfaceVariant),
                     ),
                   ),
                 ),
@@ -435,10 +432,9 @@ class HabitCompletionChart extends StatelessWidget {
                         return const SizedBox.shrink();
                       }
                       return Text(
-                        DateFormat('d').format(
-                            analytics.dailyRates[i].date),
+                        DateFormat('d').format(analytics.dailyRates[i].date),
                         style: AppTextStyles.labelSmall
-                            .copyWith(fontSize: 9),
+                            .copyWith(fontSize: 9, color: cs.onSurfaceVariant),
                       );
                     },
                   ),
@@ -471,6 +467,7 @@ class MonthlyHeatmapCalendar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     return Column(
       children: [
         // Month nav
@@ -482,23 +479,22 @@ class MonthlyHeatmapCalendar extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: AppColors.surfaceVariant,
-                  borderRadius:
-                      BorderRadius.circular(AppRadius.full),
+                  color: cs.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(AppRadius.full),
                 ),
-                child: const Icon(Icons.chevron_left,
-                    size: 18, color: AppColors.textPrimary),
+                child: Icon(Icons.chevron_left, size: 18, color: cs.onSurface),
               ),
             ),
             Column(
               children: [
                 Text(heatmap.monthLabel,
-                    style: AppTextStyles.titleMedium),
+                    style: AppTextStyles.titleMedium
+                        .copyWith(color: cs.onSurface)),
                 Text(
                   '${heatmap.perfectDays} perfect · '
                   '${heatmap.missedDays} missed',
                   style: AppTextStyles.bodyMedium
-                      .copyWith(fontSize: 11),
+                      .copyWith(fontSize: 11, color: cs.onSurfaceVariant),
                 ),
               ],
             ),
@@ -507,12 +503,10 @@ class MonthlyHeatmapCalendar extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: AppColors.surfaceVariant,
-                  borderRadius:
-                      BorderRadius.circular(AppRadius.full),
+                  color: cs.surfaceContainerHighest,
+                  borderRadius: BorderRadius.circular(AppRadius.full),
                 ),
-                child: const Icon(Icons.chevron_right,
-                    size: 18, color: AppColors.textPrimary),
+                child: Icon(Icons.chevron_right, size: 18, color: cs.onSurface),
               ),
             ),
           ],
@@ -528,8 +522,8 @@ class MonthlyHeatmapCalendar extends StatelessWidget {
                     width: 36,
                     child: Center(
                       child: Text(d,
-                          style: AppTextStyles.labelSmall
-                              .copyWith(fontSize: 11)),
+                          style: AppTextStyles.labelSmall.copyWith(
+                              fontSize: 11, color: cs.onSurfaceVariant)),
                     ),
                   ))
               .toList(),
@@ -546,7 +540,8 @@ class MonthlyHeatmapCalendar extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const _LegendDot(color: AppColors.stepInactive, label: 'No data'),
+            _LegendDot(
+                color: cs.onSurface.withValues(alpha: 0.12), label: 'No data'),
             const SizedBox(width: 12),
             _LegendDot(
                 color: AppColors.error.withValues(alpha: 0.4), label: 'Low'),
@@ -561,8 +556,7 @@ class MonthlyHeatmapCalendar extends StatelessWidget {
   }
 
   Widget _buildCalendarGrid(MonthlyHeatmap heatmap) {
-    final firstDay =
-        DateTime(heatmap.year, heatmap.month, 1);
+    final firstDay = DateTime(heatmap.year, heatmap.month, 1);
     // weekday: 1=Mon … 7=Sun; offset = weekday - 1 (0-indexed from Mon)
     final offset = firstDay.weekday - 1;
 
@@ -597,8 +591,8 @@ class _HeatmapCell extends StatelessWidget {
   final HeatmapDay day;
   const _HeatmapCell({required this.day});
 
-  Color get _cellColor {
-    if (!day.hasPassed) return AppColors.stepInactive.withValues(alpha: 0.3);
+  Color _cellColor(ColorScheme cs) {
+    if (!day.hasPassed) return cs.onSurface.withValues(alpha: 0.08);
     if (day.isEmpty) return AppColors.error.withValues(alpha: 0.25);
     if (day.isDim) return AppColors.gold.withValues(alpha: 0.4);
     if (day.isGood) return AppColors.success.withValues(alpha: 0.55);
@@ -607,6 +601,7 @@ class _HeatmapCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     final isToday = _isToday(day.date);
 
     return Tooltip(
@@ -618,11 +613,9 @@ class _HeatmapCell extends StatelessWidget {
         width: 36,
         height: 36,
         decoration: BoxDecoration(
-          color: _cellColor,
+          color: _cellColor(cs),
           borderRadius: BorderRadius.circular(8),
-          border: isToday
-              ? Border.all(color: AppColors.primary, width: 2)
-              : null,
+          border: isToday ? Border.all(color: cs.primary, width: 2) : null,
         ),
         child: day.isPerfect && day.hasPassed
             ? const Center(
@@ -635,10 +628,8 @@ class _HeatmapCell extends StatelessWidget {
                     fontSize: 11,
                     color: day.hasPassed && !day.isEmpty
                         ? Colors.white
-                        : AppColors.textHint,
-                    fontWeight: isToday
-                        ? FontWeight.w700
-                        : FontWeight.w400,
+                        : cs.onSurface.withValues(alpha: 0.4),
+                    fontWeight: isToday ? FontWeight.w700 : FontWeight.w400,
                   ),
                 ),
               ),
@@ -694,6 +685,7 @@ class _LeaderboardRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     final rankEmoji = rank == 1
         ? '🥇'
         : rank == 2
@@ -721,18 +713,16 @@ class _LeaderboardRow extends StatelessWidget {
               children: [
                 Text(stat.name,
                     style: AppTextStyles.titleMedium
-                        .copyWith(fontSize: 13)),
+                        .copyWith(fontSize: 13, color: cs.onSurface)),
                 Row(
                   children: [
                     Text('${stat.currentStreak}d streak',
                         style: AppTextStyles.labelSmall
-                            .copyWith(
-                                color: AppColors.gold, fontSize: 10)),
+                            .copyWith(color: AppColors.gold, fontSize: 10)),
                     const SizedBox(width: 8),
-                    Text(
-                        '${stat.completedDays}/${stat.targetDays} days',
-                        style: AppTextStyles.labelSmall
-                            .copyWith(fontSize: 10)),
+                    Text('${stat.completedDays}/${stat.targetDays} days',
+                        style: AppTextStyles.labelSmall.copyWith(
+                            fontSize: 10, color: cs.onSurfaceVariant)),
                   ],
                 ),
               ],
@@ -756,11 +746,10 @@ class _LeaderboardRow extends StatelessWidget {
                   ),
                 ),
                 ClipRRect(
-                  borderRadius:
-                      BorderRadius.circular(AppRadius.full),
+                  borderRadius: BorderRadius.circular(AppRadius.full),
                   child: LinearProgressIndicator(
                     value: stat.completionRate,
-                    backgroundColor: AppColors.surfaceVariant,
+                    backgroundColor: cs.surfaceContainerHighest,
                     valueColor: AlwaysStoppedAnimation(
                       stat.completionRate >= 0.8
                           ? AppColors.success
@@ -789,6 +778,7 @@ class WeeklyScoreBreakdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     if (latest == null) {
       return const _EmptyChart(message: 'No score data yet');
     }
@@ -814,16 +804,15 @@ class WeeklyScoreBreakdown extends StatelessWidget {
                 children: [
                   Text(
                     '${latest!.totalScore}',
-                    style: AppTextStyles.dataLarge
-                        .copyWith(fontSize: 22),
+                    style: AppTextStyles.dataLarge.copyWith(fontSize: 22),
                   ),
                   Text('pts',
-                      style: AppTextStyles.labelSmall
-                          .copyWith(fontSize: 9)),
+                      style: AppTextStyles.labelSmall.copyWith(
+                          fontSize: 9, color: cs.onSurfaceVariant)),
                 ],
               ),
               progressColor: _scoreColor(latest!.totalScore),
-              backgroundColor: AppColors.surfaceVariant,
+              backgroundColor: cs.surfaceContainerHighest,
               circularStrokeCap: CircularStrokeCap.round,
             ),
             const SizedBox(width: 20),
@@ -835,32 +824,28 @@ class WeeklyScoreBreakdown extends StatelessWidget {
                           child: Row(
                             children: [
                               Text(c.$1,
-                                  style:
-                                      const TextStyle(fontSize: 14)),
+                                  style: const TextStyle(fontSize: 14)),
                               const SizedBox(width: 6),
                               Text(c.$2,
-                                  style: AppTextStyles.bodyMedium
-                                      .copyWith(fontSize: 12)),
+                                  style: AppTextStyles.bodyMedium.copyWith(
+                                      fontSize: 12, color: cs.onSurface)),
                               const Spacer(),
                               Text(c.$4,
-                                  style: AppTextStyles.labelSmall
-                                      .copyWith(
-                                          fontSize: 9,
-                                          color: AppColors.textHint)),
+                                  style: AppTextStyles.labelSmall.copyWith(
+                                      fontSize: 9,
+                                      color: cs.onSurface
+                                          .withValues(alpha: 0.4))),
                               const SizedBox(width: 4),
                               SizedBox(
                                 width: 60,
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(
-                                      AppRadius.full),
+                                  borderRadius:
+                                      BorderRadius.circular(AppRadius.full),
                                   child: LinearProgressIndicator(
                                     value: c.$3 / 100,
-                                    backgroundColor:
-                                        AppColors.surfaceVariant,
-                                    valueColor:
-                                        AlwaysStoppedAnimation(
-                                      _scoreColor(c.$3),
-                                    ),
+                                    backgroundColor: cs.surfaceContainerHighest,
+                                    valueColor: AlwaysStoppedAnimation(
+                                        _scoreColor(c.$3)),
                                     minHeight: 6,
                                   ),
                                 ),
@@ -870,10 +855,9 @@ class WeeklyScoreBreakdown extends StatelessWidget {
                                 width: 28,
                                 child: Text(
                                   '${c.$3}',
-                                  style: AppTextStyles.labelLarge
-                                      .copyWith(
-                                          fontSize: 12,
-                                          color: _scoreColor(c.$3)),
+                                  style: AppTextStyles.labelLarge.copyWith(
+                                      fontSize: 12,
+                                      color: _scoreColor(c.$3)),
                                   textAlign: TextAlign.right,
                                 ),
                               ),
@@ -906,6 +890,7 @@ class PeriodPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     return Row(
       children: AnalyticsPeriod.values.map((p) {
         final isSelected = selected == p;
@@ -915,21 +900,17 @@ class PeriodPicker extends StatelessWidget {
             onTap: () => onChanged(p),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 180),
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 14, vertical: 7),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
               decoration: BoxDecoration(
-                color: isSelected
-                    ? AppColors.primary
-                    : AppColors.surfaceVariant,
+                color: isSelected ? cs.primary : cs.surfaceContainerHighest,
                 borderRadius: BorderRadius.circular(AppRadius.full),
               ),
               child: Text(
                 p.label,
                 style: AppTextStyles.labelLarge.copyWith(
                   fontSize: 12,
-                  color: isSelected
-                      ? Colors.white
-                      : AppColors.textSecondary,
+                  color: isSelected ? cs.onPrimary : cs.onSurfaceVariant,
                 ),
               ),
             ),
@@ -951,9 +932,9 @@ class _ScoreSummaryChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     return Container(
-      padding:
-          const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(AppRadius.full),
@@ -964,7 +945,7 @@ class _ScoreSummaryChip extends StatelessWidget {
             TextSpan(
               text: '$label: ',
               style: AppTextStyles.labelSmall
-                  .copyWith(color: AppColors.textSecondary, fontSize: 11),
+                  .copyWith(color: cs.onSurfaceVariant, fontSize: 11),
             ),
             TextSpan(
               text: value,
@@ -988,14 +969,14 @@ class _MiniKpi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     return Column(
       children: [
         Text(value,
-            style: AppTextStyles.dataLarge
-                .copyWith(color: color, fontSize: 24)),
+            style: AppTextStyles.dataLarge.copyWith(color: color, fontSize: 24)),
         Text(label,
-            style:
-                AppTextStyles.bodyMedium.copyWith(fontSize: 12)),
+            style: AppTextStyles.bodyMedium
+                .copyWith(fontSize: 12, color: cs.onSurfaceVariant)),
       ],
     );
   }
@@ -1008,6 +989,7 @@ class _LegendDot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -1015,13 +997,12 @@ class _LegendDot extends StatelessWidget {
           width: 12,
           height: 12,
           decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.circular(3)),
+              color: color, borderRadius: BorderRadius.circular(3)),
         ),
         const SizedBox(width: 4),
         Text(label,
             style: AppTextStyles.labelSmall
-                .copyWith(fontSize: 10)),
+                .copyWith(fontSize: 10, color: cs.onSurfaceVariant)),
       ],
     );
   }
@@ -1033,18 +1014,19 @@ class _EmptyChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
     return SizedBox(
       height: 80,
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.bar_chart_outlined,
-                color: AppColors.stepInactive, size: 28),
+            Icon(Icons.bar_chart_outlined,
+                color: cs.onSurface.withValues(alpha: 0.3), size: 28),
             const SizedBox(height: 6),
             Text(message,
                 style: AppTextStyles.bodyMedium
-                    .copyWith(color: AppColors.textHint)),
+                    .copyWith(color: cs.onSurface.withValues(alpha: 0.5))),
           ],
         ),
       ),

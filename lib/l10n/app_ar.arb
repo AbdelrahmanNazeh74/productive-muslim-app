@@ -55,7 +55,7 @@
   "habitMissed": "فائت",
   "habitExcellent": "ممتاز",
 
-  "habitStreak": "{count, plural, =1{يوم واحد متواصل} =2{يومان متواصلان} other{{count} أيام متواصلة}}",
+  "habitStreak": "{count, plural, =0{لا أيام} =1{يوم واحد متواصل} =2{يومان متواصلان} few{{count} أيام متواصلة} many{{count} يوماً متواصلاً} other{{count} أيام متواصلة}}",
   "@habitStreak": {
     "placeholders": {
       "count": { "type": "int" }
@@ -93,5 +93,52 @@
   "minutes": "د",
   "hours": "س",
 
-  "splashTagline": "توازن. عبادة. نمو."
+  "splashTagline": "توازن. عبادة. نمو.",
+
+  "errorLocationPermission": "تم رفض إذن الموقع. يرجى تفعيله من الإعدادات.",
+  "errorLocationDisabled": "خدمات الموقع معطّلة. يرجى تفعيل الموقع من الإعدادات.",
+  "errorLocationTimeout": "انتهت مهلة طلب الموقع. يرجى المحاولة مجدداً.",
+  "errorCouldNotGetLocation": "تعذّر الحصول على موقعك. يرجى المحاولة مجدداً.",
+
+  "onboardingNameGenderRequired": "يرجى إدخال اسمك (حرفان على الأقل) وتحديد جنسك.",
+  "onboardingOccupationRequired": "يرجى تحديد مهنتك.",
+  "onboardingWorkScheduleRequired": "يرجى تحديد يوم عمل واحد على الأقل ونطاق زمني صحيح.",
+  "onboardingLocationRequired": "اضغط على 'استخدام موقعي' لجلب إحداثياتك قبل المتابعة.",
+  "onboardingFieldsRequired": "يرجى إكمال جميع الحقول المطلوبة.",
+
+  "profileSavedSuccess": "تم حفظ الملف الشخصي بنجاح",
+  "backupSuccess": "اكتملت النسخة الاحتياطية",
+  "backupFailed": "فشلت النسخة الاحتياطية. يرجى المحاولة مجدداً.",
+  "backupInProgress": "جارٍ النسخ الاحتياطي…",
+
+  "noHabitsYet": "لا توجد عادات بعد",
+  "noHabitsMessage": "اضغط + لإضافة أول عادة، أو سنقترح عادات روحية من ملفك الشخصي.",
+  "addHabit": "إضافة عادة",
+  "editHabit": "تعديل العادة",
+  "newHabit": "عادة جديدة",
+  "addNewHabit": "إضافة عادة جديدة",
+
+  "excuseToday": "عذر اليوم؟",
+  "excuseTodayMessage": "سيتم الحفاظ على سلسلة أيامك لكن اليوم لن يُحسب ضمنها.",
+
+  "allStreaks": "جميع السلاسل",
+  "todayHabits": "عادات اليوم",
+  "weeklyScoreTab": "النتيجة الأسبوعية",
+
+  "ramadanMubarak": "رمضان مبارك",
+  "enableRamadanMode": "تفعيل",
+  "disableRamadanMode": "تعطيل",
+  "ramadanModeDisableTitle": "تعطيل وضع رمضان؟",
+  "ramadanModeDisableMessage": "سيعود جدولك إلى الجدول اليومي المعتاد.",
+
+  "signOutConfirmTitle": "تسجيل الخروج؟",
+  "signOutConfirmMessage": "بياناتك محفوظة في السحابة وستكون متاحة عند تسجيل الدخول مجدداً.",
+
+  "guestModeWarning": "وضع الضيف: جميع البيانات محلية فقط. سجّل دخولك لاحقاً لتفعيل النسخ الاحتياطي.",
+
+  "prayerDebugTitle": "تشخيص الصلاة",
+  "prayerDebugRewarm": "إعادة تحميل ذاكرة التخزين (30 يوماً)",
+  "prayerDebugLocation": "الموقع",
+  "prayerDebugCalculation": "طريقة الحساب",
+  "prayerDebugTodayTimes": "مواقيت صلاة اليوم"
 }

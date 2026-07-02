@@ -137,7 +137,7 @@
   "habitExcellent": "Excellent",
   "@habitExcellent": { "description": "Habit excellent rating label" },
 
-  "habitStreak": "{count, plural, =1{1 day streak} other{{count} day streak}}",
+  "habitStreak": "{count, plural, =0{No streak} =1{1 day streak} other{{count} day streak}}",
   "@habitStreak": {
     "description": "Streak count label on habit cards",
     "placeholders": {
@@ -221,5 +221,116 @@
   "@hours": { "description": "Hours abbreviation" },
 
   "splashTagline": "Balance. Worship. Grow.",
-  "@splashTagline": { "description": "Tagline shown on the splash screen" }
+  "@splashTagline": { "description": "Tagline shown on the splash screen" },
+
+  "errorLocationPermission": "Location permission denied. Please enable it in Settings.",
+  "@errorLocationPermission": { "description": "Error when location permission is denied" },
+
+  "errorLocationDisabled": "Location services are disabled. Please enable Location in Settings.",
+  "@errorLocationDisabled": { "description": "Error when device location services are off" },
+
+  "errorLocationTimeout": "Location request timed out. Please try again.",
+  "@errorLocationTimeout": { "description": "Error when location lookup times out" },
+
+  "errorCouldNotGetLocation": "Could not get your location. Please try again.",
+  "@errorCouldNotGetLocation": { "description": "Generic location fetch failure" },
+
+  "onboardingNameGenderRequired": "Please enter your name (at least 2 characters) and select your gender.",
+  "@onboardingNameGenderRequired": { "description": "Onboarding step 1 validation" },
+
+  "onboardingOccupationRequired": "Please select your occupation.",
+  "@onboardingOccupationRequired": { "description": "Onboarding step 2 validation" },
+
+  "onboardingWorkScheduleRequired": "Please select at least one work day and a valid time range.",
+  "@onboardingWorkScheduleRequired": { "description": "Onboarding step 3 validation" },
+
+  "onboardingLocationRequired": "Tap 'Use My Location' to fetch your coordinates before continuing.",
+  "@onboardingLocationRequired": { "description": "Onboarding step 4 validation: location not yet fetched" },
+
+  "onboardingFieldsRequired": "Please complete all required fields.",
+  "@onboardingFieldsRequired": { "description": "Generic onboarding validation fallback" },
+
+  "profileSavedSuccess": "Profile saved successfully",
+  "@profileSavedSuccess": { "description": "Snackbar shown after profile is saved" },
+
+  "backupSuccess": "Backup complete",
+  "@backupSuccess": { "description": "Snackbar shown after successful backup" },
+
+  "backupFailed": "Backup failed. Please try again.",
+  "@backupFailed": { "description": "Snackbar shown when backup fails" },
+
+  "backupInProgress": "Backing up…",
+  "@backupInProgress": { "description": "Status label while backup is in progress" },
+
+  "noHabitsYet": "No habits yet",
+  "@noHabitsYet": { "description": "Empty state title on habits page" },
+
+  "noHabitsMessage": "Tap + to add your first habit, or we'll seed spiritual defaults from your profile.",
+  "@noHabitsMessage": { "description": "Empty state body on habits page" },
+
+  "addHabit": "Add Habit",
+  "@addHabit": { "description": "Button label for creating a new habit" },
+
+  "editHabit": "Edit Habit",
+  "@editHabit": { "description": "Button label for editing an existing habit" },
+
+  "newHabit": "New Habit",
+  "@newHabit": { "description": "Sheet title for new habit form" },
+
+  "addNewHabit": "Add new habit",
+  "@addNewHabit": { "description": "FAB tooltip on habits page" },
+
+  "excuseToday": "Excuse Today?",
+  "@excuseToday": { "description": "Dialog title for excusing today's habit" },
+
+  "excuseTodayMessage": "Your streak will be preserved but today won't count toward it.",
+  "@excuseTodayMessage": { "description": "Dialog body for excuse-today confirmation" },
+
+  "allStreaks": "All Streaks",
+  "@allStreaks": { "description": "Label for the all-streaks section on habits page" },
+
+  "todayHabits": "Today's Habits",
+  "@todayHabits": { "description": "Tab label for today's habits" },
+
+  "weeklyScoreTab": "Weekly Score",
+  "@weeklyScoreTab": { "description": "Tab label for weekly score view" },
+
+  "ramadanMubarak": "Ramadan Mubarak",
+  "@ramadanMubarak": { "description": "Ramadan greeting shown on dashboard" },
+
+  "enableRamadanMode": "Enable",
+  "@enableRamadanMode": { "description": "Button to enable Ramadan mode" },
+
+  "disableRamadanMode": "Disable",
+  "@disableRamadanMode": { "description": "Button to disable Ramadan mode" },
+
+  "ramadanModeDisableTitle": "Disable Ramadan Mode?",
+  "@ramadanModeDisableTitle": { "description": "Confirmation dialog title for disabling Ramadan mode" },
+
+  "ramadanModeDisableMessage": "Your timeline will switch back to the standard daily schedule.",
+  "@ramadanModeDisableMessage": { "description": "Confirmation dialog body for disabling Ramadan mode" },
+
+  "signOutConfirmTitle": "Sign Out?",
+  "@signOutConfirmTitle": { "description": "Sign-out confirmation dialog title" },
+
+  "signOutConfirmMessage": "Your data is backed up to the cloud and will be available when you sign back in.",
+  "@signOutConfirmMessage": { "description": "Sign-out confirmation dialog body" },
+
+  "guestModeWarning": "Guest mode: all data is local-only. Sign in later to enable cloud backup.",
+  "@guestModeWarning": { "description": "Warning shown to users continuing as guest" },
+
+  "prayerDebugTitle": "Prayer Debug",
+  "@prayerDebugTitle": { "description": "Title of the prayer debug page" },
+
+  "prayerDebugRewarm": "Rewarm 30-Day Cache",
+  "@prayerDebugRewarm": { "description": "Button to rewarm the prayer cache" },
+
+  "prayerDebugLocation": "Location",
+  "@prayerDebugLocation": { "description": "Section header for location info on prayer debug page" },
+
+  "prayerDebugCalculation": "Calculation",
+  "@prayerDebugCalculation": { "description": "Section header for calculation settings on prayer debug page" },
+
+  "prayerDebugTodayTimes": "Today's Prayer Times",
+  "@prayerDebugTodayTimes": { "description": "Section header for today's times on prayer debug page" }
 }

@@ -42,7 +42,7 @@ class _RamadanSettingsPageState extends State<RamadanSettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text('Ramadan Settings'),
         actions: [
@@ -314,9 +314,10 @@ class _Section extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(AppRadius.lg),
-        border: Border.all(color: AppColors.surfaceVariant, width: 1.5),
+        border: Border.all(
+            color: Theme.of(context).colorScheme.outlineVariant, width: 1.5),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -325,7 +326,9 @@ class _Section extends StatelessWidget {
             children: [
               Text(emoji, style: const TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
-              Text(title, style: AppTextStyles.titleMedium),
+              Text(title,
+                  style: AppTextStyles.titleMedium.copyWith(
+                      color: Theme.of(context).colorScheme.onSurface)),
             ],
           ),
           const SizedBox(height: 16),
@@ -378,7 +381,7 @@ class _SliderRow extends StatelessWidget {
           max: max,
           divisions: divisions,
           activeColor: color,
-          inactiveColor: AppColors.stepInactive,
+          inactiveColor: Theme.of(context).colorScheme.outlineVariant,
           onChanged: onChanged,
         ),
       ],
@@ -408,7 +411,7 @@ class _ToggleRow extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(label, style: AppTextStyles.bodyMedium
-                  .copyWith(color: AppColors.textPrimary)),
+                  .copyWith(color: Theme.of(context).colorScheme.onSurface)),
               if (subtitle != null)
                 Text(subtitle!,
                     style: AppTextStyles.bodyMedium

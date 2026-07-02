@@ -75,7 +75,7 @@ class _HabitsPageState extends State<HabitsPage>
         // ── Tablet two-column: Today | Score always visible ──────────────────
         if (context.isTablet) {
           return Scaffold(
-            backgroundColor: AppColors.background,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             floatingActionButton: fab,
             body: SafeArea(
               child: Column(
@@ -107,7 +107,7 @@ class _HabitsPageState extends State<HabitsPage>
 
         // ── Phone: TabBar + TabBarView ────────────────────────────────────────
         return Scaffold(
-          backgroundColor: AppColors.background,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           floatingActionButton: fab,
           body: SafeArea(
             child: Column(
@@ -190,7 +190,7 @@ class _HabitsPageState extends State<HabitsPage>
               borderRadius: BorderRadius.circular(AppRadius.full),
               child: LinearProgressIndicator(
                 value: total == 0 ? 0 : completed / total,
-                backgroundColor: AppColors.surfaceVariant,
+                backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
                 valueColor: AlwaysStoppedAnimation(
                   completed == total ? AppColors.success : AppColors.primary,
                 ),
@@ -212,8 +212,8 @@ class _HabitsPageState extends State<HabitsPage>
         labelStyle: AppTextStyles.labelLarge.copyWith(fontSize: 13),
         unselectedLabelStyle:
             AppTextStyles.bodyMedium.copyWith(fontSize: 13),
-        labelColor: AppColors.primary,
-        unselectedLabelColor: AppColors.textSecondary,
+        labelColor: Theme.of(context).colorScheme.primary,
+        unselectedLabelColor: Theme.of(context).colorScheme.onSurfaceVariant,
         indicatorColor: AppColors.primary,
         indicatorSize: TabBarIndicatorSize.label,
         dividerColor: Colors.transparent,
@@ -530,9 +530,10 @@ class _StreakSummaryRow extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: Theme.of(context).colorScheme.surface,
         borderRadius: BorderRadius.circular(AppRadius.md),
-        border: Border.all(color: AppColors.surfaceVariant, width: 1.5),
+        border: Border.all(
+            color: Theme.of(context).colorScheme.outlineVariant, width: 1.5),
       ),
       child: Row(
         children: [
