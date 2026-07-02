@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Habit notification icon: bold checkmark inside circle. White on transparent. 96×96. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Outer ring -->
+  <circle cx="48" cy="48" r="38" fill="none" stroke="white" stroke-width="5"/>
+  <!-- Bold check mark -->
+  <polyline
+    points="24,48 38,63 72,30"
+    fill="none" stroke="white" stroke-width="7.5"
+    stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Small star accent top-right -->
+  <polygon
+    points="80,16 82,22 88,22 83,26 85,32 80,28 75,32 77,26 72,22 78,22"
+    fill="white" opacity="0.7"/>
+</svg>

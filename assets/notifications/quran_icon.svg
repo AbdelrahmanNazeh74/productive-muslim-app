@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Quran notification icon: open book. White on transparent. 96×96. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Left page -->
+  <path d="M48 18 Q30 14 10 18 L10 74 Q30 70 48 74 Z"
+        fill="none" stroke="white" stroke-width="3.5" stroke-linejoin="round"/>
+  <!-- Right page -->
+  <path d="M48 18 Q66 14 86 18 L86 74 Q66 70 48 74 Z"
+        fill="none" stroke="white" stroke-width="3.5" stroke-linejoin="round"/>
+  <!-- Spine -->
+  <line x1="48" y1="16" x2="48" y2="76" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  <!-- Text lines — left page -->
+  <line x1="18" y1="34" x2="42" y2="34" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+  <line x1="18" y1="43" x2="42" y2="43" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+  <line x1="18" y1="52" x2="42" y2="52" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+  <line x1="18" y1="61" x2="36" y2="61" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+  <!-- Text lines — right page -->
+  <line x1="54" y1="34" x2="78" y2="34" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+  <line x1="54" y1="43" x2="78" y2="43" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+  <line x1="54" y1="52" x2="78" y2="52" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+  <line x1="54" y1="61" x2="72" y2="61" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+  <!-- Decorative bismillah dot (centre top) -->
+  <circle cx="48" cy="26" r="3" fill="white" opacity="0.5"/>
+</svg>

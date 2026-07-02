@@ -1,0 +1,51 @@
+{
+  "@@locale": "ar",
+  "@@last_modified": "2026-06-29",
+
+  "@@NOTE": "Only 20 strings translated here — extend this file to complete Arabic support. All remaining strings fall back to English automatically.",
+
+  "appTitle": "المسلم المنتج",
+
+  "tabHome": "الرئيسية",
+
+  "tabHabits": "العادات",
+
+  "tabAnalytics": "التحليلات",
+
+  "tabSettings": "الإعدادات",
+
+  "onboardingWelcomeTitle": "السلام عليكم",
+
+  "onboardingWelcomeSubtitle": "لنبني حياتك الإسلامية المنتجة",
+
+  "settingsTitle": "الإعدادات",
+
+  "appearanceTitle": "المظهر",
+
+  "notificationsTitle": "الإشعارات",
+
+  "prayerTimesTitle": "مواقيت الصلاة",
+
+  "buttonSave": "حفظ",
+
+  "buttonCancel": "إلغاء",
+
+  "buttonContinue": "متابعة",
+
+  "buttonDone": "تم",
+
+  "buttonRetry": "إعادة المحاولة",
+
+  "habitCompleted": "تم اليوم",
+
+  "habitStreak": "{count, plural, =1{يوم واحد متواصل} =2{يومان متواصلان} other{{count} أيام متواصلة}}",
+  "@habitStreak": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "prayerNext": "الصلاة القادمة",
+
+  "splashTagline": "توازن. عبادة. نمو."
+}

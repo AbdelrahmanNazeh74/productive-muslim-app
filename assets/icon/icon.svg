@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Productive Muslim — App Icon
+  ============================================================
+  ViewBox  : 512 × 512
+  Design   : Islamic green background · 8-pointed star (rub el hizb) · crescent · "PM" wordmark
+  Usage    : Run `dart run tool/generate_icon.dart` to rasterise to assets/icon/icon.png (1024×1024)
+             Then: `dart run flutter_launcher_icons`
+  Colours  : Primary green #1B6B3A  ·  White #FFFFFF
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+
+  <!-- ── Background ─────────────────────────────────────────────────────────── -->
+  <rect width="512" height="512" rx="96" ry="96" fill="#1B6B3A"/>
+
+  <!-- ── 8-pointed star (rub el hizb) ──────────────────────────────────────── -->
+  <!--
+    Solid 16-vertex polygon.
+    Centre   : (256, 280)
+    Outer R  : 145   (tips of the star)
+    Inner r  : 72    (inner concave corners)
+    Starting : 270° (top), alternating outer/inner every 22.5°
+  -->
+  <polygon
+    points="
+      256,135  284,210  357,177  322,249
+      401,280  322,311  357,383  284,350
+      256,425  228,350  155,383  190,311
+      111,280  190,249  155,177  228,210
+    "
+    fill="white"/>
+
+  <!-- ── Crescent moon (upper-right, integrated) ───────────────────────────── -->
+  <!--
+    Crescent = white outer circle minus a slightly offset inner circle.
+    Outer : cx=370 cy=105 r=48
+    Inner : cx=390 cy=95  r=38  (shifted right + up → crescent opens left)
+  -->
+  <defs>
+    <mask id="crescent">
+      <circle cx="370" cy="105" r="48" fill="white"/>
+      <circle cx="390" cy="95"  r="38" fill="black"/>
+    </mask>
+  </defs>
+  <circle cx="370" cy="105" r="48" fill="white" mask="url(#crescent)"/>
+
+  <!-- ── "PM" wordmark ─────────────────────────────────────────────────────── -->
+  <text
+    x="256" y="480"
+    font-family="'Helvetica Neue', Arial, sans-serif"
+    font-weight="800"
+    font-size="66"
+    fill="white"
+    text-anchor="middle"
+    letter-spacing="-1">PM</text>
+
+</svg>

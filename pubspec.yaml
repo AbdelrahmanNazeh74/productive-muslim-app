@@ -1,0 +1,126 @@
+name: productive_muslim
+description: Productive Muslim — Balance your spiritual life, health, and daily work.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # State Management
+  flutter_bloc: ^8.1.5
+  equatable: ^2.0.5
+
+  # Local Database
+  isar: ^3.1.0+1
+  isar_flutter_libs: ^3.1.0+1
+  path_provider: ^2.1.3
+
+  # Prayer Times
+  adhan: ^2.0.0
+
+  # Location
+  geolocator: ^12.0.0
+  geocoding: ^3.0.0
+
+  # Navigation
+  go_router: ^14.2.0
+
+  # Notifications
+  flutter_local_notifications: ^17.2.2
+  timezone: ^0.9.4
+
+  # UI & UX
+  google_fonts: ^6.2.1
+  flutter_svg: ^2.0.10+1
+  lottie: ^3.1.2
+  flutter_animate: ^4.5.0
+  smooth_page_indicator: ^1.1.0
+  percent_indicator: ^4.2.3
+  fl_chart: ^0.68.0
+  iconsax: ^0.0.8
+
+  # Home Screen Widget
+  home_widget: ^0.6.0
+
+  # Localisation (intl is also required by flutter_localizations)
+  intl: ^0.20.2
+  dartz: ^0.10.1
+  shared_preferences: ^2.3.2
+  permission_handler: ^11.3.1
+  uuid: ^4.4.0
+
+  # ── Firebase (commented out — activate via HANDOVER.md §3e / §3f) ────────────
+  # Uncomment ALL four lines together after completing the 4-step setup:
+  # firebase_core: ^2.27.0
+  # firebase_auth: ^4.17.0
+  # cloud_firestore: ^4.15.0
+  # google_sign_in: ^6.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^2.4.11
+  flutter_lints: ^4.0.0
+  bloc_test: ^9.1.7
+  mocktail: ^1.0.4
+  flutter_launcher_icons: ^0.14.1
+  flutter_native_splash: ^2.4.3
+  # Used by tool/generate_icon.dart to programmatically draw the app icon PNG.
+  image: ^4.1.0
+
+# ── App icon generation ───────────────────────────────────────────────────────
+# Source SVG: assets/icon/icon.svg  (design reference)
+# PNG output: dart run tool/generate_icon.dart
+# Then:       dart run flutter_launcher_icons
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon.png"
+  min_sdk_android: 21
+  remove_alpha_ios: true
+  # Adaptive icon (Android 8+): solid green background + white star foreground
+  adaptive_icon_background: "#1B6B3A"
+  adaptive_icon_foreground: "assets/icon/icon_foreground.png"
+  web:
+    generate: true
+    image_path: "assets/icon/icon.png"
+    background_color: "#1B6B3A"
+  windows:
+    generate: false
+  macos:
+    generate: false
+
+# ── Native splash screen ──────────────────────────────────────────────────────
+# After running: dart run flutter_native_splash:create
+flutter_native_splash:
+  color: "#1B6B3A"
+  color_dark: "#0D3B1F"
+  image: assets/icons/splash_logo.png
+  android: true
+  ios: true
+  web: false
+  fullscreen: false
+  android_12:
+    color: "#1B6B3A"
+    color_dark: "#0D3B1F"
+    image: assets/icons/splash_logo.png
+    icon_background_color: "#1B6B3A"
+    icon_background_color_dark: "#0D3B1F"
+
+flutter:
+  generate: true  # Enables flutter gen-l10n for lib/l10n/*.arb files
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/icon/
+    - assets/animations/
+    - assets/notifications/
+    - assets/audio/
+    - assets/privacy_policy.md

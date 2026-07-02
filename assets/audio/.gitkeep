@@ -1,0 +1,11 @@
+# Place audio files here:
+#   adhan.mp3          — full adhan at prayer time
+#   iftar_adhan.mp3    — Iftar adhan for Ramadan Maghrib
+#   quran_reminder.mp3 — gentle Quran reading reminder
+#
+# iOS: convert to .aiff and add to ios/Runner/ via Xcode (Copy Bundle Resources).
+#
+# Free sources:
+#   Islamic Network  https://alquran.cloud/api
+#   Zekr             https://zekr.org
+#   Islamic Finder   https://www.islamicfinder.org

@@ -1,0 +1,69 @@
+{
+  "@@locale": "en",
+  "@@last_modified": "2026-06-29",
+
+  "appTitle": "Productive Muslim",
+  "@appTitle": { "description": "App name shown in the title bar" },
+
+  "tabHome": "Home",
+  "@tabHome": { "description": "Bottom nav: Home / Timeline tab" },
+
+  "tabHabits": "Habits",
+  "@tabHabits": { "description": "Bottom nav: Habits tab" },
+
+  "tabAnalytics": "Analytics",
+  "@tabAnalytics": { "description": "Bottom nav: Analytics tab" },
+
+  "tabSettings": "Settings",
+  "@tabSettings": { "description": "Bottom nav: Settings tab" },
+
+  "onboardingWelcomeTitle": "Assalamu Alaikum",
+  "@onboardingWelcomeTitle": { "description": "First onboarding step title" },
+
+  "onboardingWelcomeSubtitle": "Let's build your productive Muslim life",
+  "@onboardingWelcomeSubtitle": { "description": "First onboarding step subtitle" },
+
+  "settingsTitle": "Settings",
+  "@settingsTitle": { "description": "Settings page title" },
+
+  "appearanceTitle": "Appearance",
+  "@appearanceTitle": { "description": "Appearance sub-page title" },
+
+  "notificationsTitle": "Notifications",
+  "@notificationsTitle": { "description": "Notifications sub-page title" },
+
+  "prayerTimesTitle": "Prayer Times",
+  "@prayerTimesTitle": { "description": "Prayer times sub-page title" },
+
+  "buttonSave": "Save",
+  "@buttonSave": { "description": "Generic save button" },
+
+  "buttonCancel": "Cancel",
+  "@buttonCancel": { "description": "Generic cancel button" },
+
+  "buttonContinue": "Continue",
+  "@buttonContinue": { "description": "Generic continue / next button" },
+
+  "buttonDone": "Done",
+  "@buttonDone": { "description": "Generic done / finish button" },
+
+  "buttonRetry": "Retry",
+  "@buttonRetry": { "description": "Retry after an error" },
+
+  "habitCompleted": "Done today",
+  "@habitCompleted": { "description": "Habit completion status label" },
+
+  "habitStreak": "{count, plural, =1{1 day streak} other{{count} day streak}}",
+  "@habitStreak": {
+    "description": "Streak count label on habit cards",
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "prayerNext": "Next prayer",
+  "@prayerNext": { "description": "Label above the next prayer countdown" },
+
+  "splashTagline": "Balance. Worship. Grow.",
+  "@splashTagline": { "description": "Tagline shown on the splash screen" }
+}
