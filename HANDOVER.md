@@ -7,6 +7,24 @@
 
 ---
 
+## ✅ FINAL POLISH (2026-07-03) — commit 53fd2c6
+
+Seven issues identified and resolved in a final audit pass:
+
+| Area | Fix |
+|---|---|
+| **Profile routing** | `app_router.dart` now uses `state.extra as UserProfile? ?? existingProfile` — all navigation paths to `/home` pass the loaded profile so HomeShell never falls back to the London placeholder |
+| **Auth → Home** | `auth_page.dart`: `ctx.go(AppRouter.home, extra: profile)` |
+| **Onboarding → Home** | `onboarding_page.dart`: async-loads profile after `OnboardingStatus.success` then navigates with `extra: profile` |
+| **Theme flash** | `main.dart`: settings pre-loaded before `runApp()`; `initialThemeMode` + `initialLanguage` passed to `ProductiveMuslimApp` so the first frame renders the correct theme without flash |
+| **Dark mode scaffolds** | `timeline_dashboard_page.dart`, `onboarding_page.dart`, `settings_page.dart`: all `Scaffold.backgroundColor` + `SliverAppBar.backgroundColor` now use `Theme.of(context).scaffoldBackgroundColor` |
+| **Dark mode cards** | `settings_page.dart` `_buildSection`: card background → `cs.surface`, divider → `cs.outlineVariant`, label text → `cs.onSurface.withValues(alpha: 0.4)` |
+| **RTL date navigator** | `timeline_dashboard_page.dart` `_DateNavigator`: chevrons swap (`chevron_right` / `chevron_left`) and `_NavButton` uses fully theme-aware colors |
+| **RTL back arrow** | `onboarding_page.dart`: back button uses `Icons.arrow_forward_ios` on Arabic locale |
+| **Prayer debug screen** | New `prayer_debug_page.dart`: shows lat/lng, city, timezone, calculation method, madhab, buffer, today's 5 prayer times + sunrise. Accessible in Settings under Developer (only visible in `kDebugMode`) |
+
+---
+
 ## ✅ FIREBASE IS LIVE (integrated 2026-07-02)
 
 Real Google Sign-In, anonymous auth, Firestore backup, Firebase Analytics, and Crashlytics are all active.

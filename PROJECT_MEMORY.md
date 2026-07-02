@@ -1,6 +1,7 @@
-# ✅ FIREBASE + 4 BUG FIXES COMPLETE (2026-07-03)
-535 tests passing. 0 analyze issues. All phases 1–9 + Sessions A, B, C, Final, Firebase & Bug Fix done.
-Firebase ACTIVE. Bug fixes: Google photo display, prayer-time location guard, Arabic l10n, dark mode.
+# ✅ FINAL POLISH COMPLETE (2026-07-03)
+535 tests passing. 0 analyze issues. All phases 1–9 + Sessions A–C, Final, Firebase, Bug Fix + Polish done.
+Firebase ACTIVE. Bug fixes + polish: Google photo, prayer location, Arabic l10n, dark mode, profile routing,
+theme flash, RTL chevrons, scaffold colors, prayer debug screen (kDebugMode). Commit: 53fd2c6.
 
 ---
 
