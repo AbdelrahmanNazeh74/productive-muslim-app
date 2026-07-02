@@ -1,7 +1,7 @@
 ﻿import 'package:flutter/material.dart';
 import '../../../../shared/theme/app_theme.dart';
 
-// â”€â”€â”€ STEP HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── STEP HEADER ─────────────────────────────────────────────────────────────
 class OnboardingStepHeader extends StatelessWidget {
   final String title;
   final String subtitle;
@@ -31,7 +31,7 @@ class OnboardingStepHeader extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ SELECTION CARD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── SELECTION CARD ──────────────────────────────────────────────────────────
 class SelectionCard extends StatelessWidget {
   final String label;
   final String? emoji;
@@ -109,7 +109,7 @@ class SelectionCard extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ DAY CHIP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── DAY CHIP ────────────────────────────────────────────────────────────────
 class DayChip extends StatelessWidget {
   final String label;
   final bool isSelected;
@@ -152,7 +152,7 @@ class DayChip extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ TIME PICKER TILE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── TIME PICKER TILE ─────────────────────────────────────────────────────────
 class TimePickerTile extends StatelessWidget {
   final String label;
   final int hour;
@@ -207,7 +207,7 @@ class TimePickerTile extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ SECTION LABEL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── SECTION LABEL ────────────────────────────────────────────────────────────
 class SectionLabel extends StatelessWidget {
   final String text;
   final EdgeInsets? padding;
@@ -229,7 +229,7 @@ class SectionLabel extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ GENDER TOGGLE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── GENDER TOGGLE ───────────────────────────────────────────────────────────
 class GenderSelector extends StatelessWidget {
   final String selected;
   final ValueChanged<String> onChanged;
@@ -247,7 +247,7 @@ class GenderSelector extends StatelessWidget {
         Expanded(
           child: _GenderOption(
             label: 'Male',
-            emoji: 'ðŸ‘¨',
+            emoji: '👨',
             value: 'male',
             selected: selected == 'male',
             onTap: () => onChanged('male'),
@@ -257,7 +257,7 @@ class GenderSelector extends StatelessWidget {
         Expanded(
           child: _GenderOption(
             label: 'Female',
-            emoji: 'ðŸ‘©',
+            emoji: '👩',
             value: 'female',
             selected: selected == 'female',
             onTap: () => onChanged('female'),
@@ -317,7 +317,7 @@ class _GenderOption extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ STEP PROGRESS BAR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── STEP PROGRESS BAR ────────────────────────────────────────────────────────
 class OnboardingProgressBar extends StatelessWidget {
   final int currentStep;
   final int totalSteps;
@@ -354,7 +354,7 @@ class OnboardingProgressBar extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ INFO BANNER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── INFO BANNER ─────────────────────────────────────────────────────────────
 class InfoBanner extends StatelessWidget {
   final String text;
   final IconData icon;

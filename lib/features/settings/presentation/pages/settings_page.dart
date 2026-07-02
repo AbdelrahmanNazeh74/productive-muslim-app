@@ -201,7 +201,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget _buildVersion() {
     return Text(
-      'Productive Muslim Â· v1.0.0',
+      'Productive Muslim · v1.0.0',
       style: AppTextStyles.labelSmall.copyWith(color: AppColors.textHint),
     );
   }
@@ -214,7 +214,7 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 }
 
-// â”€â”€â”€ PROFILE CARD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── PROFILE CARD ─────────────────────────────────────────────────────────────
 class _ProfileCard extends StatelessWidget {
   final UserProfile? profile;
   const _ProfileCard({this.profile});
@@ -333,7 +333,7 @@ class _ProfileCard extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ SETTINGS TILE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── SETTINGS TILE ────────────────────────────────────────────────────────────
 class _SettingsTile extends StatelessWidget {
   final IconData icon;
   final Color iconColor;

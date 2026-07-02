@@ -6,8 +6,8 @@ import '../../../onboarding/domain/entities/user_profile.dart';
 import '../../../ramadan/domain/usecases/hijri_converter.dart';
 import '../../../ramadan/presentation/bloc/ramadan_bloc.dart';
 
-// â”€â”€â”€ HIJRI DATE BANNER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-/// Shows the current Hijri date and â€” during Ramadan â€” a Ramadan badge.
+// ─── HIJRI DATE BANNER ───────────────────────────────────────────────────────
+/// Shows the current Hijri date and — during Ramadan — a Ramadan badge.
 class HijriDateBanner extends StatelessWidget {
   const HijriDateBanner({super.key});
 
@@ -29,7 +29,7 @@ class HijriDateBanner extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            isRamadan ? 'ðŸŒ™' : 'ðŸ“…',
+            isRamadan ? '🌙' : '📅',
             style: const TextStyle(fontSize: 14),
           ),
           const SizedBox(width: 6),
@@ -50,7 +50,7 @@ class HijriDateBanner extends StatelessWidget {
                 borderRadius: BorderRadius.circular(AppRadius.full),
               ),
               child: Text(
-                'Day ${hijri.ramadanDay} ðŸŒ™',
+                'Day ${hijri.ramadanDay} 🌙',
                 style: AppTextStyles.labelSmall.copyWith(
                   color: Colors.white,
                   fontSize: 10,
@@ -65,7 +65,7 @@ class HijriDateBanner extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ RAMADAN MODE TOGGLE CARD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── RAMADAN MODE TOGGLE CARD ────────────────────────────────────────────────
 /// A prominent card shown at the top of the timeline when Ramadan
 /// is detected or manually activated. Tapping it toggles Ramadan Mode.
 class RamadanModeToggleCard extends StatelessWidget {
@@ -124,7 +124,7 @@ class _ActiveBanner extends StatelessWidget {
         ),
         child: Row(
           children: [
-            const Text('ðŸŒ™', style: TextStyle(fontSize: 24)),
+            const Text('🌙', style: TextStyle(fontSize: 24)),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
@@ -223,13 +223,13 @@ class _RamadanSuggestionCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Text('ðŸŒ™', style: TextStyle(fontSize: 24)),
+          const Text('🌙', style: TextStyle(fontSize: 24)),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Ramadan Mubarak! ðŸŒŸ',
+                Text('Ramadan Mubarak! 🌟',
                     style: AppTextStyles.titleMedium),
                 Text(
                   'Switch to Ramadan Mode for a Suhoor, Iftar & Tarawih schedule.',
@@ -263,7 +263,7 @@ class _RamadanSuggestionCard extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ RAMADAN IFTAR MINI COUNTDOWN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── RAMADAN IFTAR MINI COUNTDOWN ────────────────────────────────────────────
 /// Small countdown chip shown in the timeline header during fasting hours.
 class IftarMiniCountdown extends StatelessWidget {
   const IftarMiniCountdown({super.key});
@@ -298,7 +298,7 @@ class IftarMiniCountdown extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text('â³', style: TextStyle(fontSize: 12)),
+              const Text('⏳', style: TextStyle(fontSize: 12)),
               const SizedBox(width: 6),
               Text(
                 label,

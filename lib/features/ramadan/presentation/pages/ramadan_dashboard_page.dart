@@ -65,7 +65,7 @@ class _RamadanDashboardPageState extends State<RamadanDashboardPage> {
     );
   }
 
-  // â”€â”€â”€ HEADER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ─── HEADER ──────────────────────────────────────────────────────────────────
   Widget _buildHeader(BuildContext context, RamadanState state) {
     final ctx = state.dayContext;
     final hijri = state.todayHijri;
@@ -142,7 +142,7 @@ class _RamadanDashboardPageState extends State<RamadanDashboardPage> {
 
           const SizedBox(height: 20),
 
-          // Iftar countdown â€” the centrepiece
+          // Iftar countdown — the centrepiece
           if (state.dayContext != null)
             _IftarCountdown(
               times: state.dayContext!.times,
@@ -153,7 +153,7 @@ class _RamadanDashboardPageState extends State<RamadanDashboardPage> {
     );
   }
 
-  // â”€â”€â”€ BODY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ─── BODY ────────────────────────────────────────────────────────────────────
   Widget _buildBody(BuildContext context, RamadanState state) {
     if (state.status == RamadanStatus.loading) {
       return const Center(
@@ -162,7 +162,7 @@ class _RamadanDashboardPageState extends State<RamadanDashboardPage> {
           children: [
             CircularProgressIndicator(color: AppColors.gold),
             SizedBox(height: 16),
-            Text('Building your Ramadan scheduleâ€¦ ðŸŒ™',
+            Text('Building your Ramadan schedule… 🌙',
                 style: TextStyle(color: Colors.white60)),
           ],
         ),
@@ -237,7 +237,7 @@ class _RamadanDashboardPageState extends State<RamadanDashboardPage> {
     );
   }
 
-  // â”€â”€â”€ RAMADAN SECTIONS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ─── RAMADAN SECTIONS ────────────────────────────────────────────────────────
   List<Widget> _buildSections(BuildContext context, RamadanState state) {
     final timeline = state.timeline!;
     final blocks = timeline.blocks;
@@ -257,7 +257,7 @@ class _RamadanDashboardPageState extends State<RamadanDashboardPage> {
         TimeBlockType.quran,
         TimeBlockType.dhikr,
       ], afterHour: 5, beforeHour: 12),
-      const _RSection('Fasting Hours â€” Work & Study', [
+      const _RSection('Fasting Hours — Work & Study', [
         TimeBlockType.work,
         TimeBlockType.deepWork,
         TimeBlockType.break_,
@@ -329,7 +329,7 @@ class _RamadanDashboardPageState extends State<RamadanDashboardPage> {
   }
 }
 
-// â”€â”€â”€ IFTAR COUNTDOWN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── IFTAR COUNTDOWN ─────────────────────────────────────────────────────────
 class _IftarCountdown extends StatelessWidget {
   final RamadanTimes times;
   final DateTime now;
@@ -344,8 +344,8 @@ class _IftarCountdown extends StatelessWidget {
 
     if (alreadyBroke) {
       return _CountdownCard(
-        emoji: 'ðŸŒ…',
-        label: 'Fast broken Â· Alhamdulillah',
+        emoji: '🌅',
+        label: 'Fast broken · Alhamdulillah',
         value: 'Iftar at ${DateFormat('h:mm a').format(times.iftarTime)}',
         color: AppColors.success,
         sublabel: 'Fasting window: ${times.fastingHoursLabel}',
@@ -354,7 +354,7 @@ class _IftarCountdown extends StatelessWidget {
 
     if (!isFasting) {
       return _CountdownCard(
-        emoji: 'ðŸŒ™',
+        emoji: '🌙',
         label: 'Suhoor ends',
         value: DateFormat('h:mm a').format(times.suhoorEnd),
         color: AppColors.fajr,
@@ -368,14 +368,14 @@ class _IftarCountdown extends StatelessWidget {
     final seconds = diff.inSeconds % 60;
 
     return _CountdownCard(
-      emoji: 'â³',
+      emoji: '⏳',
       label: 'Iftar in',
       value: hours > 0
           ? '${hours}h ${minutes}m ${seconds}s'
           : '${minutes}m ${seconds}s',
       color: AppColors.gold,
       sublabel: 'Break fast at ${DateFormat('h:mm a').format(times.iftarTime)}'
-          ' Â· ${times.fastingHoursLabel}',
+          ' · ${times.fastingHoursLabel}',
     );
   }
 }
@@ -431,7 +431,7 @@ class _CountdownCard extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ RAMADAN TIMES STRIP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── RAMADAN TIMES STRIP ─────────────────────────────────────────────────────
 class _RamadanTimesStrip extends StatelessWidget {
   final RamadanTimes times;
   const _RamadanTimesStrip({required this.times});
@@ -449,9 +449,9 @@ class _RamadanTimesStrip extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _TimePill('ðŸŒ™', 'Suhoor', DateFormat('h:mm a').format(times.suhoorEnd)),
-          _TimePill('ðŸŒ…', 'Iftar', DateFormat('h:mm a').format(times.iftarTime)),
-          _TimePill('ðŸŒ™', 'Tarawih', DateFormat('h:mm a').format(times.tarawihStart)),
+          _TimePill('🌙', 'Suhoor', DateFormat('h:mm a').format(times.suhoorEnd)),
+          _TimePill('🌅', 'Iftar', DateFormat('h:mm a').format(times.iftarTime)),
+          _TimePill('🌙', 'Tarawih', DateFormat('h:mm a').format(times.tarawihStart)),
         ],
       ),
     );

@@ -28,7 +28,7 @@ class Step2WorkSchedule extends StatelessWidget {
                 subtitle: isHomemaker
                     ? 'Set the hours you\'d like to focus on home tasks.'
                     : 'Tell us when your ${isStudent ? 'classes or study sessions' : 'shift'} typically run.',
-                emoji: isStudent ? 'ðŸ“–' : 'â°',
+                emoji: isStudent ? '📖' : '⏰',
               ),
 
               const SizedBox(height: AppSpacing.xl),
@@ -143,7 +143,7 @@ class Step2WorkSchedule extends StatelessWidget {
               Row(
                 children: [
                   _PresetChip(
-                    label: 'Monâ€“Fri',
+                    label: 'Mon–Fri',
                     onTap: () {
                       for (int i = 0; i < 7; i++) {
                         final shouldBeActive = i < 5;
@@ -158,7 +158,7 @@ class Step2WorkSchedule extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   _PresetChip(
-                    label: 'Sunâ€“Thu',
+                    label: 'Sun–Thu',
                     onTap: () {
                       // Sun=6, Mon=0, Tue=1, Wed=2, Thu=3
                       final sunThu = [0, 1, 2, 3, 6];
@@ -180,7 +180,7 @@ class Step2WorkSchedule extends StatelessWidget {
 
               const InfoBanner(
                 text:
-                    'Prayer times will never conflict with your work blocks â€” we always build in buffer time.',
+                    'Prayer times will never conflict with your work blocks — we always build in buffer time.',
                 icon: Icons.mosque_outlined,
                 color: AppColors.primary,
               ),

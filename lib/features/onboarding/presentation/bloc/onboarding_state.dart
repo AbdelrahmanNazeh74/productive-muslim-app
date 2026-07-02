@@ -97,7 +97,7 @@ class OnboardingState extends Equatable {
             (workEndHour * 60 + workEndMinute) >
                 (workStartHour * 60 + workStartMinute);
       case 3:
-        return latitude != null && longitude != null && city.isNotEmpty;
+        return latitude != null && longitude != null;
       case 4:
         return true; // Fitness is optional
       case 5:

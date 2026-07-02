@@ -27,8 +27,8 @@ class Step4Fitness extends StatelessWidget {
               const OnboardingStepHeader(
                 title: 'Fitness Goals',
                 subtitle:
-                    'We\'ll build workout blocks around your prayers â€” no more skipping gym for Asr.',
-                emoji: 'ðŸ‹ï¸',
+                    'We\'ll build workout blocks around your prayers — no more skipping gym for Asr.',
+                emoji: '🏋️',
               ),
 
               const SizedBox(height: AppSpacing.xl),
@@ -124,7 +124,7 @@ class Step4Fitness extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ Activity Chip â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Activity Chip ────────────────────────────────────────────────────────
 class _ActivityChip extends StatelessWidget {
   final String label;
   final String emoji;
@@ -175,7 +175,7 @@ class _ActivityChip extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ Duration Chip â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Duration Chip ────────────────────────────────────────────────────────
 class _DurationChip extends StatelessWidget {
   final String label;
   final bool isSelected;

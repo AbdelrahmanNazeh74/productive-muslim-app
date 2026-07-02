@@ -23,7 +23,7 @@ class Step3PrayerSettings extends StatelessWidget {
                 title: 'Prayer Times',
                 subtitle:
                     'Accurate Salah times are the backbone of your daily schedule.',
-                emoji: 'ðŸ•Œ',
+                emoji: '🕌',
               ),
 
               const SizedBox(height: AppSpacing.xl),
@@ -101,7 +101,7 @@ class Step3PrayerSettings extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ Location Request Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Location Request Card ─────────────────────────────────────────────────
 class _LocationRequestCard extends StatelessWidget {
   final bool isLoading;
   final VoidCallback onRequest;
@@ -121,7 +121,7 @@ class _LocationRequestCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const Text('ðŸ“', style: TextStyle(fontSize: 40)),
+          const Text('📍', style: TextStyle(fontSize: 40)),
           const SizedBox(height: 12),
           Text(
             'Allow Location Access',
@@ -146,7 +146,7 @@ class _LocationRequestCard extends StatelessWidget {
                       child: CircularProgressIndicator(
                           strokeWidth: 2, color: Colors.white))
                   : const Icon(Icons.my_location, size: 18),
-              label: Text(isLoading ? 'Getting locationâ€¦' : 'Use My Location'),
+              label: Text(isLoading ? 'Getting location…' : 'Use My Location'),
             ),
           ),
         ],
@@ -155,7 +155,7 @@ class _LocationRequestCard extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ Location Confirmed Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Location Confirmed Card ───────────────────────────────────────────────
 class _LocationConfirmedCard extends StatelessWidget {
   final String city;
   final double lat;
@@ -217,7 +217,7 @@ class _LocationConfirmedCard extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ Calculation Method Picker â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Calculation Method Picker ────────────────────────────────────────────
 class _ExpandableMethodPicker extends StatefulWidget {
   final String selected;
   final ValueChanged<String> onChanged;
@@ -325,7 +325,7 @@ class _ExpandableMethodPickerState extends State<_ExpandableMethodPicker> {
   }
 }
 
-// â”€â”€â”€ Buffer Slider â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Buffer Slider ────────────────────────────────────────────────────────
 class _BufferSlider extends StatelessWidget {
   final int value;
   final ValueChanged<int> onChanged;

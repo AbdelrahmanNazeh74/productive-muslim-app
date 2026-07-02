@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
@@ -157,6 +159,16 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
     emit(state.copyWith(status: OnboardingStatus.locationLoading));
 
     try {
+      final serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!serviceEnabled) {
+        emit(state.copyWith(
+          status: OnboardingStatus.failure,
+          errorMessage:
+              'Location services are disabled. Please enable Location in your device settings.',
+        ));
+        return;
+      }
+
       LocationPermission permission = await Geolocator.checkPermission();
       if (permission == LocationPermission.denied) {
         permission = await Geolocator.requestPermission();
@@ -173,8 +185,17 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
         return;
       }
 
-      final position = await Geolocator.getCurrentPosition(
+      // Try last known position first (instant); fall back to fresh fix with timeout.
+      Position? position;
+      try {
+        position = await Geolocator.getLastKnownPosition();
+      } catch (_) {}
+
+      position ??= await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.medium,
+      ).timeout(
+        const Duration(seconds: 15),
+        onTimeout: () => throw TimeoutException('Location request timed out'),
       );
 
       // Reverse geocode to get city name
@@ -187,10 +208,11 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
         );
         if (placemarks.isNotEmpty) {
           final place = placemarks.first;
-          city = place.locality ??
-              place.subAdministrativeArea ??
-              place.administrativeArea ??
-              'Your City';
+          city = [
+            place.locality,
+            place.subAdministrativeArea,
+            place.administrativeArea,
+          ].firstWhere((s) => s != null && s.isNotEmpty, orElse: () => 'Your City') ?? 'Your City';
         }
       } catch (_) {
         // Geocoding failed — use coordinates silently
@@ -376,7 +398,7 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
       case 2:
         return 'Please select at least one work day and a valid time range.';
       case 3:
-        return 'Please allow location access to calculate accurate prayer times.';
+        return 'Tap "Use My Location" to fetch your coordinates before continuing.';
       default:
         return 'Please complete all required fields.';
     }

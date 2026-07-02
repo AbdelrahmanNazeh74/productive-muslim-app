@@ -8,8 +8,8 @@ import '../../../../shared/theme/app_theme.dart';
 import '../../domain/entities/habit.dart';
 import '../../domain/usecases/streak_calculator.dart';
 
-// â”€â”€â”€ STREAK FLAME BADGE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-/// The visual centrepiece â€” a flame that grows with the streak count.
+// ─── STREAK FLAME BADGE ──────────────────────────────────────────────────────
+/// The visual centrepiece — a flame that grows with the streak count.
 class StreakFlameBadge extends StatefulWidget {
   final int streak;
   final double size;
@@ -137,16 +137,16 @@ class _StreakFlameBadgeState extends State<StreakFlameBadge>
   }
 
   String _flameEmoji(int streak) {
-    if (streak == 0) return 'â—‹';
-    if (streak >= 100) return 'ðŸ’œ';
-    if (streak >= 30) return 'ðŸŒŸ';
-    if (streak >= 14) return 'ðŸ”¥';
-    if (streak >= 7) return 'ðŸ”¥';
-    return 'ðŸ”¥';
+    if (streak == 0) return '○';
+    if (streak >= 100) return '💜';
+    if (streak >= 30) return '🌟';
+    if (streak >= 14) return '🔥';
+    if (streak >= 7) return '🔥';
+    return '🔥';
   }
 }
 
-// â”€â”€â”€ 7-DAY HEAT MAP â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── 7-DAY HEAT MAP ──────────────────────────────────────────────────────────
 class HeatMapRow extends StatelessWidget {
   final List<DayStatus> days;
 
@@ -233,7 +233,7 @@ class _HeatDot extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ HABIT CARD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── HABIT CARD ───────────────────────────────────────────────────────────────
 class HabitCard extends StatefulWidget {
   final Habit habit;
   final bool isCompleted;
@@ -340,7 +340,7 @@ class _HabitCardState extends State<HabitCard>
         ),
         child: Column(
           children: [
-            // â”€â”€ Main row â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            // ── Main row ───────────────────────────────────────────────────
             InkWell(
               onTap: () => setState(() => _expanded = !_expanded),
               borderRadius: BorderRadius.circular(AppRadius.lg),
@@ -432,7 +432,7 @@ class _HabitCardState extends State<HabitCard>
                                         AppRadius.full),
                                   ),
                                   child: Text(
-                                    'ðŸ† Best!',
+                                    '🏆 Best!',
                                     style: AppTextStyles.labelSmall
                                         .copyWith(
                                       color: Colors.white,
@@ -445,9 +445,9 @@ class _HabitCardState extends State<HabitCard>
                           const SizedBox(height: 3),
                           Text(
                             isDone
-                                ? 'âœ“ Done Â· ${widget.habit.currentStreak} day streak'
+                                ? '✓ Done · ${widget.habit.currentStreak} day streak'
                                 : isExcused
-                                    ? '~ Excused Â· streak preserved'
+                                    ? '~ Excused · streak preserved'
                                     : widget.habit.description ??
                                         widget.habit.category.label,
                             style: AppTextStyles.bodyMedium.copyWith(
@@ -477,7 +477,7 @@ class _HabitCardState extends State<HabitCard>
               ),
             ),
 
-            // â”€â”€ Expanded detail â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            // ── Expanded detail ────────────────────────────────────────────
             if (_expanded)
               Padding(
                 padding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
@@ -509,7 +509,7 @@ class _HabitCardState extends State<HabitCard>
                         const SizedBox(width: 12),
                         _MiniStat(
                           label: 'Target',
-                          value: '${widget.habit.targetFrequencyPerWeek}Ã—/wk',
+                          value: '${widget.habit.targetFrequencyPerWeek}×/wk',
                           color: AppColors.textSecondary,
                         ),
                         const Spacer(),
@@ -563,7 +563,7 @@ class _HabitCardState extends State<HabitCard>
   }
 }
 
-// â”€â”€â”€ CHECK BUTTON â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── CHECK BUTTON ────────────────────────────────────────────────────────────
 class _CheckButton extends StatelessWidget {
   final bool isDone;
   final bool isExcused;
@@ -633,7 +633,7 @@ class _CheckButton extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ MINI STAT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── MINI STAT ────────────────────────────────────────────────────────────────
 class _MiniStat extends StatelessWidget {
   final String label;
   final String value;
@@ -657,7 +657,7 @@ class _MiniStat extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ WEEKLY SPIRITUAL SCORE CARD â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── WEEKLY SPIRITUAL SCORE CARD ─────────────────────────────────────────────
 class WeeklyScoreCard extends StatelessWidget {
   final WeeklySpiritualScore score;
 
@@ -692,7 +692,7 @@ class WeeklyScoreCard extends StatelessWidget {
           // Header
           Row(
             children: [
-              const Text('ðŸ“Š', style: TextStyle(fontSize: 20)),
+              const Text('📊', style: TextStyle(fontSize: 20)),
               const SizedBox(width: 8),
               Text(
                 'Weekly Spiritual Score',
@@ -755,25 +755,25 @@ class WeeklyScoreCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
                     _ScoreBar(
-                      label: 'ðŸ¤² Prayers',
+                      label: '🤲 Prayers',
                       score: score.prayerScore,
                       weight: '50%',
                     ),
                     const SizedBox(height: 6),
                     _ScoreBar(
-                      label: 'ðŸ“– Quran',
+                      label: '📖 Quran',
                       score: score.quranScore,
                       weight: '20%',
                     ),
                     const SizedBox(height: 6),
                     _ScoreBar(
-                      label: 'âœ… Habits',
+                      label: '✅ Habits',
                       score: score.habitsScore,
                       weight: '20%',
                     ),
                     const SizedBox(height: 6),
                     _ScoreBar(
-                      label: 'ðŸ‹ï¸ Fitness',
+                      label: '🏋️ Fitness',
                       score: score.gymScore,
                       weight: '10%',
                     ),
@@ -789,7 +789,7 @@ class WeeklyScoreCard extends StatelessWidget {
 
   String _weekLabel() {
     final end = score.weekStart.add(const Duration(days: 6));
-    return '${DateFormat('MMM d').format(score.weekStart)} â€“ '
+    return '${DateFormat('MMM d').format(score.weekStart)} – '
         '${DateFormat('d').format(end)}';
   }
 }
@@ -843,7 +843,7 @@ class _ScoreBar extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ CELEBRATION OVERLAY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── CELEBRATION OVERLAY ────────────────────────────────────────────────────
 /// Shown briefly when a new personal best streak is achieved.
 class PersonalBestCelebration extends StatefulWidget {
   final Habit habit;
@@ -922,7 +922,7 @@ class _PersonalBestCelebrationState extends State<PersonalBestCelebration>
               ),
               child: Row(
                 children: [
-                  const Text('ðŸ†', style: TextStyle(fontSize: 32)),
+                  const Text('🏆', style: TextStyle(fontSize: 32)),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Column(
@@ -934,8 +934,8 @@ class _PersonalBestCelebrationState extends State<PersonalBestCelebration>
                               .copyWith(color: Colors.white),
                         ),
                         Text(
-                          '${widget.habit.name} Â· '
-                          '${widget.habit.longestStreak} day streak ðŸ”¥',
+                          '${widget.habit.name} · '
+                          '${widget.habit.longestStreak} day streak 🔥',
                           style: AppTextStyles.bodyMedium
                               .copyWith(color: Colors.white.withValues(alpha: 0.8), fontSize: 12),
                         ),
@@ -952,7 +952,7 @@ class _PersonalBestCelebrationState extends State<PersonalBestCelebration>
   }
 }
 
-// â”€â”€â”€ CATEGORY FILTER BAR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── CATEGORY FILTER BAR ─────────────────────────────────────────────────────
 class CategoryFilterBar extends StatelessWidget {
   final HabitCategory? selected;
   final ValueChanged<HabitCategory?> onChanged;
@@ -1028,7 +1028,7 @@ class _FilterChip extends StatelessWidget {
   }
 }
 
-// â”€â”€â”€ ADD HABIT BOTTOM SHEET â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── ADD HABIT BOTTOM SHEET ──────────────────────────────────────────────────
 class AddHabitSheet extends StatefulWidget {
   final Habit? existing; // null = create, non-null = edit
   final ValueChanged<Habit> onSave;
@@ -1045,14 +1045,14 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
   late String _emoji;
   late int _frequency;
   late String _timeAnchor;
-  final _emojis = ['ðŸ¤²', 'ðŸ“–', 'ðŸ“¿', 'ðŸ‹ï¸', 'ðŸƒ', 'ðŸ’§', 'ðŸ¥—', 'ðŸ“š', 'âœï¸', 'ðŸŒ±', 'ðŸ’¤', 'â˜•'];
+  final _emojis = ['🤲', '📖', '📿', '🏋️', '🏃', '💧', '🥗', '📚', '✍️', '🌱', '💤', '☕'];
 
   @override
   void initState() {
     super.initState();
     _nameCtrl = TextEditingController(text: widget.existing?.name ?? '');
     _category = widget.existing?.category ?? HabitCategory.personal;
-    _emoji = widget.existing?.emoji ?? 'ðŸŒ±';
+    _emoji = widget.existing?.emoji ?? '🌱';
     _frequency = widget.existing?.targetFrequencyPerWeek ?? 7;
     _timeAnchor = widget.existing?.timeAnchor ?? 'anytime';
   }
@@ -1195,7 +1195,7 @@ class _AddHabitSheetState extends State<AddHabitSheet> {
                 Text('FREQUENCY PER WEEK',
                     style: AppTextStyles.labelSmall),
                 Text(
-                  '$_frequencyÃ— / week',
+                  '$_frequency× / week',
                   style: AppTextStyles.titleMedium
                       .copyWith(color: AppColors.primary, fontSize: 14),
                 ),

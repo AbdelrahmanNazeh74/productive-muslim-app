@@ -23,7 +23,7 @@ class Step5Sleep extends StatelessWidget {
                 title: 'Sleep & Quran',
                 subtitle:
                     'Good sleep fuels your ibadah and your work. Let\'s set a plan that honors both.',
-                emoji: 'ðŸŒ™',
+                emoji: '🌙',
               ),
 
               const SizedBox(height: AppSpacing.xl),
@@ -61,7 +61,7 @@ class Step5Sleep extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const Text('ðŸŒ…', style: TextStyle(fontSize: 20)),
+                        const Text('🌅', style: TextStyle(fontSize: 20)),
                         const SizedBox(width: 8),
                         Text(
                           'Relative to Fajr',
@@ -168,7 +168,7 @@ class Step5Sleep extends StatelessWidget {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              'During your cycle, prayer and Quran streaks will be paused â€” not broken.',
+                              'During your cycle, prayer and Quran streaks will be paused — not broken.',
                               style: AppTextStyles.bodyMedium,
                             ),
                           ],
@@ -201,7 +201,7 @@ class Step5Sleep extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    const Text('ðŸ¤²', style: TextStyle(fontSize: 36)),
+                    const Text('🤲', style: TextStyle(fontSize: 36)),
                     const SizedBox(height: 12),
                     Text(
                       'You\'re almost there!',
@@ -278,7 +278,7 @@ class _QuranGoalSlider extends StatelessWidget {
   String get _context {
     if (value == 0) return '';
     final daysToKhatm = (604 / value).ceil();
-    return 'â‰ˆ $daysToKhatm days to complete the Quran';
+    return '≈ $daysToKhatm days to complete the Quran';
   }
 
   @override
