@@ -1,6 +1,6 @@
-# ✅ FIREBASE FULL INTEGRATION — Live Google Sign-In + Firestore + Crashlytics (2026-07-02)
-535 tests passing. 0 analyze issues. All phases 1–9 + Sessions A, B, C, Final & Firebase done.
-Firebase is ACTIVE — real Google Sign-In, Firestore backup, Crashlytics, Analytics are wired.
+# ✅ FIREBASE + 4 BUG FIXES COMPLETE (2026-07-03)
+535 tests passing. 0 analyze issues. All phases 1–9 + Sessions A, B, C, Final, Firebase & Bug Fix done.
+Firebase ACTIVE. Bug fixes: Google photo display, prayer-time location guard, Arabic l10n, dark mode.
 
 ---
 

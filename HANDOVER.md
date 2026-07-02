@@ -415,14 +415,14 @@ No leaderboards between friends, no group challenge sharing, no public streak di
 
 ### h) Localisation and Arabic RTL
 
-**l10n scaffold is in place.** The app ships with a full localisation scaffold:
+**Arabic l10n is now functional (fixed 2026-07-03).** The app ships with a working localisation system:
 - `flutter_localizations` (SDK package) and `intl: ^0.20.2` are in `pubspec.yaml`.
-- `l10n.yaml` is configured and `generate: true` is set in the `flutter:` section — `flutter gen-l10n` runs at build time.
-- ARB files exist at `lib/l10n/app_en.arb` (20 English strings) and `lib/l10n/app_ar.arb` (Arabic translations).
-- `AppSettings.language` field persists the chosen locale. A language picker (English / العربية) is on the Appearance settings page.
-- `main.dart` passes `locale`, `localizationsDelegates`, and `supportedLocales` to `MaterialApp.router`.
+- `l10n.yaml` is configured and `generate: true` is set in the `flutter:` section.
+- ARB files at `lib/l10n/app_en.arb` and `lib/l10n/app_ar.arb` now contain **60+ strings** covering nav tabs, prayers, timeline, habits, Ramadan, settings, auth, and analytics.
+- `main.dart` uses `AppLocalizations.localizationsDelegates` (the full delegate set including `AppLocalizations.delegate`, `GlobalMaterialLocalizations.delegate`, etc.).
+- `AppSettings.language` persists the chosen locale. A language picker (English / العربية) is on the Appearance settings page.
 
-**What remains:** The 20 ARB strings cover only app-level chrome (tabs, buttons, settings labels). All feature strings (onboarding, timeline block names, habit descriptions, analytics labels) still need to be extracted and translated. RTL layout testing is also needed — `Directionality.of(context)` is not currently used explicitly in feature widgets.
+**What remains:** Feature strings (onboarding step copy, timeline block names, habit descriptions) still need to be extracted into ARB and translated. RTL layout testing is also needed — `Directionality.of(context)` is not currently used explicitly in feature widgets.
 
 ### i) Accessibility Audit
 
@@ -708,6 +708,12 @@ productive_muslim/
 ---
 
 ## 9. Known Issues and Technical Debt
+
+**4 critical bugs fixed (2026-07-03, commit `dbba694`).**
+1. *Google Sign-In photo not shown* — `firebase_auth_repository_impl` now maps `photoUrl: user.photoURL`; `home_shell` shows `NetworkImage` in the nav avatar when `photoUrl` is non-null.
+2. *Prayer times ignoring device location* — `prayer_time_service` returns a `ValidationFailure` when `latitude == 0.0 && longitude == 0.0`, surfacing a clear error instead of silently computing wrong times.
+3. *Arabic language completely non-functional* — `main.dart` was missing `AppLocalizations.delegate` from `localizationsDelegates`; fixed by replacing the manual list with `AppLocalizations.localizationsDelegates`. ARB files expanded from ~17 to 60+ strings.
+4. *Dark mode not applying on Appearance page / nav bar* — `appearance_page.dart` and `home_shell.dart` replaced all hardcoded `AppColors.*` constants with `Theme.of(context).colorScheme.*`.
 
 **Radio widget deprecation.** The prayer calculation method selector in `step_3_prayer_settings.dart` uses the `Radio` widget's `groupValue`/`onChanged` API, which was deprecated in Flutter 3.32 in favour of `RadioGroup`. A `// ignore: deprecated_member_use` comment suppresses the analyzer warning. The widget works correctly at runtime. Migration to `RadioGroup` should be the first post-launch cleanup task.
 
