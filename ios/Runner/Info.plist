@@ -58,20 +58,15 @@
 		<string>remote-notification</string>
 	</array>
 
-	<!-- Google Sign-In: add REVERSED_CLIENT_ID after downloading GoogleService-Info.plist
-	     1. Open GoogleService-Info.plist and copy the REVERSED_CLIENT_ID value
-	     2. Add these two keys to this file (replace YOUR_REVERSED_CLIENT_ID):
-	     <key>CFBundleURLTypes</key>
-	     <array>
-	       <dict>
-	         <key>CFBundleURLSchemes</key>
-	         <array>
-	           <string>YOUR_REVERSED_CLIENT_ID</string>
-	         </array>
-	       </dict>
-	     </array>
-	     The REVERSED_CLIENT_ID looks like: com.googleusercontent.apps.1234567890-abcdef
-	-->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.533062204398-nlivanpobs0fmomgp9omh5k4la5eo1sj</string>
+			</array>
+		</dict>
+	</array>
 
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>

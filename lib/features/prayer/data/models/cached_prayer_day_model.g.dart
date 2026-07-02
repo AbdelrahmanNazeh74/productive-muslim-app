@@ -16,7 +16,7 @@ extension GetCachedPrayerDayModelCollection on Isar {
 
 const CachedPrayerDayModelSchema = CollectionSchema(
   name: r'CachedPrayerDayModel',
-  id: -3120947816741055422,
+  id: -3950270816906162114,
   properties: {
     r'asr': PropertySchema(
       id: 0,
@@ -81,7 +81,7 @@ const CachedPrayerDayModelSchema = CollectionSchema(
   idName: r'id',
   indexes: {
     r'date': IndexSchema(
-      id: -6153213796063680534,
+      id: -7552997827385218417,
       name: r'date',
       unique: true,
       replace: false,

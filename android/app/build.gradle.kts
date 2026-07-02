@@ -4,6 +4,8 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("dev.flutter.flutter-gradle-plugin")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 // ── Load android/key.properties (never committed to source control) ───────────
@@ -63,7 +65,9 @@ android {
 
     buildTypes {
         debug {
-            applicationIdSuffix = ".debug"
+            // applicationIdSuffix removed: google-services.json only registers
+            // com.productivemuslim.app; adding a suffix breaks processGoogleServices.
+            // Register com.productivemuslim.app.debug in Firebase Console to restore it.
             versionNameSuffix = "-debug"
         }
         release {
@@ -80,4 +84,7 @@ flutter {
 
 dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
+    implementation("com.google.firebase:firebase-crashlytics")
+    implementation("com.google.firebase:firebase-analytics")
 }

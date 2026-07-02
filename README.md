@@ -5,6 +5,7 @@
 ![Tests](https://img.shields.io/badge/tests-535%20passing-brightgreen)
 ![Analyze](https://img.shields.io/badge/flutter%20analyze-0%20issues-brightgreen)
 ![Flutter](https://img.shields.io/badge/Flutter-3.22%2B-blue)
+![Firebase](https://img.shields.io/badge/Firebase-active-orange)
 ![Platform](https://img.shields.io/badge/platform-Android%20%7C%20iOS-lightgrey)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
@@ -21,7 +22,8 @@
 - **Prayer notifications** — configurable lead time per prayer, quiet hours window, powered by `flutter_local_notifications`
 - **Full settings suite** — prayer calculation method (10 options), Hanafi/Shafi madhab, work schedule, sleep goals, Quran pages target, notification config, light/dark/system theme
 - **Responsive layout** — two-column tablet layout at ≥768dp; four breakpoints (small / medium / large / tablet)
-- **Fully offline** — no accounts, no internet connection required at runtime, all data in local Isar database
+- **Google Sign-In + Cloud Backup** — Firebase Auth (Google + anonymous) and Firestore backup with offline persistence; gracefully falls back to local-only mode if Firebase is unavailable
+- **Fully offline-first** — all features work without internet; prayer times computed on-device, data stored in local Isar database
 
 ---
 
@@ -38,6 +40,9 @@
 | Charts | `fl_chart ^0.68.0` |
 | Location | `geolocator` + `geocoding` |
 | Functional | `dartz ^0.10.1` |
+| Auth / Backup | `firebase_auth ^5.3.1` + `cloud_firestore ^5.4.4` |
+| Crash / Analytics | `firebase_crashlytics ^4.1.3` + `firebase_analytics ^11.3.3` |
+| Google Sign-In | `google_sign_in ^6.2.2` |
 | Testing | `bloc_test ^9.1.7` + `mocktail ^1.0.4` |
 
 ---

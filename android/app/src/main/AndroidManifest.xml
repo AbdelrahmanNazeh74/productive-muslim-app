@@ -22,7 +22,7 @@
         android:enableOnBackInvokedCallback="true">
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.productive_muslim.MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:taskAffinity=""
@@ -58,7 +58,7 @@
 
         <!-- Home-screen widget -->
         <receiver
-            android:name=".ProductiveMuslimWidgetProvider"
+            android:name="com.example.productive_muslim.ProductiveMuslimWidgetProvider"
             android:exported="true"
             android:label="Productive Muslim Widget">
             <intent-filter>

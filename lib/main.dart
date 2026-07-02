@@ -1,9 +1,13 @@
+import 'dart:ui' show PlatformDispatcher;
+
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'core/di/app_dependencies.dart';
+import 'core/di/environment_config.dart';
 import 'core/navigation/app_router.dart';
 import 'core/services/isar_service.dart';
 import 'core/services/prayer_notification_service.dart';
@@ -19,6 +23,16 @@ import 'shared/theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await EnvironmentConfig.initializeIfAvailable();
+
+  if (EnvironmentConfig.firebaseAvailable) {
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+    PlatformDispatcher.instance.onError = (error, stack) {
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      return true;
+    };
+  }
 
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

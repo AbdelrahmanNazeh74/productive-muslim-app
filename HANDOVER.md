@@ -7,32 +7,22 @@
 
 ---
 
-## TO ACTIVATE FIREBASE (4 steps)
+## ✅ FIREBASE IS LIVE (integrated 2026-07-02)
 
-The codebase ships with mock Auth and mock Backup implementations so it compiles and runs with zero external accounts. When you are ready to add real Google Sign-In and Cloud Backup, flip one compile-time constant and swap two return lines:
+Real Google Sign-In, anonymous auth, Firestore backup, Firebase Analytics, and Crashlytics are all active.
 
-**Step 1 — Create Firebase project**
-1. Go to [console.firebase.google.com](https://console.firebase.google.com) → Add project.
-2. Register both `com.productivemuslim.app` (Android) and `com.productivemuslim.app` (iOS).
-3. Download `google-services.json` → place in `android/app/` (git-ignored).
-4. Download `GoogleService-Info.plist` → add via Xcode File → Add Files to `ios/Runner/` (git-ignored).
-5. Enable **Google Sign-In** in Firebase Console → Authentication → Sign-in methods.
-6. Enable **Firestore** in Firebase Console → Firestore Database → Create database (production mode).
+**Firebase project:** `productive-muslim-app` (free Spark plan)
+**Android package / iOS bundle:** `com.productivemuslim.app`
 
-**Step 2 — Add the SHA-1 fingerprint (Android only)**
-See the comment block inside `android/app/build.gradle.kts` → `defaultConfig {}` for the exact `keytool` command.
-
-**Step 3 — Add the REVERSED_CLIENT_ID (iOS only)**
-See the comment block inside `ios/Runner/Info.plist` for the exact `CFBundleURLTypes` XML to add.
-
-**Step 4 — Flip the switch**
-In `lib/core/di/environment_config.dart`, change:
-```dart
-static const bool useFirebase = false;   // ← change to true
+**One remaining action before Google Sign-In works on Android:**
+Register the debug SHA-1 fingerprint in Firebase Console → Project Settings → Your Android app → Add fingerprint:
 ```
-Then uncomment the Firebase return lines in the same file (`authRepository` and `backupRepository`). Add the four Firebase packages listed in `pubspec.yaml` (they are already written, just commented out). Run `flutter pub get`. Done.
+SHA-1: FD:D7:6D:F6:99:76:4E:22:28:8B:69:F1:6B:9B:70:F5:AB:E7:47:0F
+```
+Run `tool\get_sha_fingerprints.bat` (Windows) or `bash tool/get_sha_fingerprints.sh` (Mac/Linux) to get fingerprints for other machines. See `docs/SHA_FINGERPRINTS.md` for full instructions.
 
-No BLoC, use-case, or UI changes are needed.
+**How the runtime switch works:**
+`EnvironmentConfig.initializeIfAvailable()` in `main()` calls `Firebase.initializeApp()` in a try/catch. On success, `_firebaseAvailable = true` and Firebase repositories are injected. On any failure (missing config, network error, test environment) the app silently falls back to mock repositories — no crash, no user-visible error.
 
 ---
 
@@ -232,45 +222,42 @@ Full instructions including archive, upload, metadata, age rating, and privacy d
 
 ---
 
-### e) Swapping Mock Auth to Real Google Sign-In
+### e) Auth — Firebase Google Sign-In (ACTIVE)
 
-**What it is:** Google Sign-In is implemented as a mock that stores a hardcoded user in SharedPreferences. A full Firebase implementation scaffold (`lib/features/auth/data/repositories/firebase_auth_repository_impl.dart`) is already written — every method returns a stub error with all real Firebase code commented in place, ready to uncomment.
+Google Sign-In and anonymous auth are live via `firebase_auth ^5.3.1` and `google_sign_in ^6.2.2`.
 
-**Step by step:**
+**`FirebaseAuthRepositoryImpl`** (`lib/features/auth/data/repositories/firebase_auth_repository_impl.dart`) is the active implementation when `EnvironmentConfig.firebaseAvailable` is true.
 
-1. Uncomment the Firebase/google_sign_in package imports in `pubspec.yaml` (already listed in the commented block above `dev_dependencies:`), then run `flutter pub get`.
-2. Place `google-services.json` in `android/app/` and `GoogleService-Info.plist` in `ios/Runner/` via Xcode (both are git-ignored).
-3. In `lib/features/auth/data/repositories/firebase_auth_repository_impl.dart`, uncomment all import lines and method bodies — the full flow is already written.
-4. In `lib/core/di/environment_config.dart`, set `useFirebase = true` and uncomment the Firebase return lines in `authRepository()`.
-5. No changes to `app_dependencies.dart`, BLoC, use-cases, or UI are needed.
-
-**Firebase setup for crash reporting / analytics:** add `firebase_core` to `pubspec.yaml`, call `await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)` in `main()` before `AppDependencies.init()`.
+**Remaining action:** Register the SHA-1 fingerprint for each machine's debug keystore in Firebase Console (see the FIREBASE IS LIVE section above and `docs/SHA_FINGERPRINTS.md`). Without this, `signInWithGoogle()` returns a `FirebaseAuthException` on Android.
 
 ---
 
-### f) Swapping Mock Backup to Firebase / Supabase
+### f) Backup — Firestore (ACTIVE)
 
-**What it is:** Cloud backup is implemented as a mock that saves JSON files to the device's documents directory with a 1-second simulated delay. A full Firestore implementation scaffold (`lib/features/backup/data/repositories/firebase_backup_repository_impl.dart`) is already written — every method body is commented in place.
+Firestore backup is live via `cloud_firestore ^5.4.4`. Offline persistence is enabled.
 
-**Step by step (Firebase Firestore):**
+**Collection path:** `users/{userId}/backups/{backupId}`
+**`FirebaseBackupRepositoryImpl`** (`lib/features/backup/data/repositories/firebase_backup_repository_impl.dart`) is the active implementation when `EnvironmentConfig.firebaseAvailable` is true.
 
-1. Uncomment `cloud_firestore` in the commented package block in `pubspec.yaml`, then run `flutter pub get`.
-2. In `lib/features/backup/data/repositories/firebase_backup_repository_impl.dart`, uncomment all import lines and method bodies (Firestore collection path: `users/{userId}/backups/{backupId}` is already set).
-3. In `lib/core/di/environment_config.dart`, set `useFirebase = true` and uncomment the Firebase return line in `backupRepository()`.
-4. No changes to `app_dependencies.dart`, BLoC, use-cases, or UI are needed.
+**Firestore security rules** are in `firestore.rules` — deploy with `firebase deploy --only firestore:rules`. Deploy the index in `firestore.indexes.json` with `firebase deploy --only firestore:indexes`.
 
-**Supabase alternative:** use `supabase_flutter`, store backups in a `backups` table with `user_id`, `created_at`, `app_version`, `data` (JSONB) columns. Implement `BackupRepository`, swap the return in `environment_config.dart`.
+**What remains for backup to be fully useful in production:** The `BackupAutoRequested` event in `main.dart` currently sends an empty snapshot. A `BackupSnapshotBuilder` service needs to read `UserProfile`, `Habit` list, `StreakRecord` list, and `AppSettings` from Isar and assemble a full `BackupSnapshot`. Wire it into `didChangeAppLifecycleState(paused)`.
+
+**Supabase alternative:** implement `BackupRepository` with `supabase_flutter`, swap the return in `environment_config.dart`.
 
 ---
 
-### g) Firebase (Crash Reporting / Analytics — Not Yet Integrated)
+### g) Crashlytics and Analytics (ACTIVE)
 
-**What it is:** Firebase Crashlytics and Analytics are not integrated. If you want crash reports and usage data:
+**Firebase Crashlytics** (`firebase_crashlytics ^4.1.3`) and **Firebase Analytics** (`firebase_analytics ^11.3.3`) are integrated.
 
-**Where to add it:**
-- Android: place `google-services.json` inside `android/app/`. Add `apply plugin: 'com.google.gms.google-services'` at the bottom of `android/app/build.gradle.kts`.
-- iOS: place `GoogleService-Info.plist` inside `ios/Runner/` via Xcode (File → Add Files, never copy manually to bypass Xcode's signature). Add `firebase_core` to `pubspec.yaml` and call `await Firebase.initializeApp()` early in `main()`.
-- DI point: `lib/core/di/app_dependencies.dart` — add Firebase init here, after `WidgetsFlutterBinding.ensureInitialized()`.
+- `FlutterError.onError` → `FirebaseCrashlytics.instance.recordFlutterFatalError` (in `main()`)
+- `PlatformDispatcher.instance.onError` → `FirebaseCrashlytics.instance.recordError` with `fatal: true`
+- Both are guarded by `EnvironmentConfig.firebaseAvailable` — no crash if Firebase is unavailable
+
+**Service wrappers:**
+- `lib/core/services/analytics_service.dart` — static helpers for prayer completed, habit completed, screen view, set user ID
+- `lib/core/services/error_reporting_service.dart` — static helpers for record error, log, set user ID
 
 ---
 
@@ -444,13 +431,11 @@ Before a public launch, distribute to real users via:
 - **Android:** Google Play Internal Testing track — upload the AAB and add tester email addresses.
 This allows you to catch device-specific issues, prayer time accuracy issues for edge-case locations, and UX problems that automated tests cannot catch.
 
-### m) Analytics and Crash Reporting
+### m) Analytics and Crash Reporting (DONE)
 
-No analytics or crash reporting is integrated. For a production app, strongly consider:
-- **Firebase Crashlytics** — automatic crash reports with stack traces, zero configuration after `firebase_core` is added.
-- **Firebase Analytics** — event tracking (which features are used, drop-off at which onboarding step).
-- **Sentry** — alternative to Firebase if you prefer no Google dependency.
-Without this, you will have no visibility into crashes that users experience in production.
+Firebase Crashlytics and Firebase Analytics are active. See Section 3g for details.
+
+The service wrappers (`AnalyticsService`, `ErrorReportingService`) have call sites ready — wire them into feature BLoCs as needed for richer event tracking (e.g., call `AnalyticsService.logPrayerCompleted()` from `TimelineBloc` when a prayer block is checked).
 
 ### n) Radio Widget Deprecation
 
@@ -756,4 +741,4 @@ This section is a placeholder for the developer who takes ownership of this proj
 
 ---
 
-*Last updated: 2026-06-29 (Session C — QA pass). Flutter analyze: 0 issues. Tests: 538/538 passing.*
+*Last updated: 2026-07-02 (Firebase Full Integration). Flutter analyze: 0 issues. Tests: 535/535 passing. Debug APK: built successfully.*
