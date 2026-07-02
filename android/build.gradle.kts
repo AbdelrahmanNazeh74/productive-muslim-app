@@ -19,6 +19,26 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 
+// AGP 8.0+ requires an explicit `namespace` in every Android library module.
+// Older pub packages (e.g. isar_flutter_libs 3.1.0+1) still rely on the
+// `package` attribute in AndroidManifest.xml which is no longer accepted.
+// We set the namespace at plugin-apply time (inside plugins.withId), which
+// fires BEFORE AGP reads the namespace during its own afterEvaluate —
+// "during evaluation", not after, which is what AGP requires.
+subprojects {
+    plugins.withId("com.android.library") {
+        val lib = extensions.findByType(com.android.build.gradle.LibraryExtension::class.java)
+        if (lib != null && lib.namespace == null) {
+            val mf = lib.sourceSets.getByName("main").manifest.srcFile
+            if (mf.exists()) {
+                Regex("""package\s*=\s*"([^"]+)"""")
+                    .find(mf.readText())?.groupValues?.get(1)
+                    ?.let { lib.namespace = it }
+            }
+        }
+    }
+}
+
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }

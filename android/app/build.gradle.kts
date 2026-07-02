@@ -17,10 +17,11 @@ val keyProperties = Properties().apply {
 
 android {
     namespace = "com.productivemuslim.app"
-    compileSdk = 34
+    compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
@@ -46,8 +47,8 @@ android {
 
     defaultConfig {
         applicationId = "com.productivemuslim.app"
-        minSdk = 21
-        targetSdk = 34
+        minSdk = flutter.minSdkVersion
+        targetSdk = 36
         // ── Google Sign-In / Firebase ─────────────────────────────────────────
         // After adding google-services.json, register your SHA-1 fingerprint in
         // the Firebase Console (Project Settings → Your Android App → Add SHA-1).
@@ -75,4 +76,8 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }
