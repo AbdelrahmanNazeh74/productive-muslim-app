@@ -29,6 +29,20 @@ Firebase is ACTIVE — real Google Sign-In, Firestore backup, Crashlytics, Analy
 - **Current version:** `1.0.0+1`
 - **Total lines of code:** ~24,000 across 96+ Dart files (535 tests)
 
+## 🔥 Firebase Project Details
+
+| Field | Value |
+|---|---|
+| Project ID | `productive-muslim-app` |
+| Project number | `533062204398` |
+| Android package | `com.productivemuslim.app` |
+| iOS bundle ID | `com.productivemuslim.app` |
+| Storage bucket | `productive-muslim-app.firebasestorage.app` |
+| Debug SHA-1 | `FD:D7:6D:F6:99:76:4E:22:28:8B:69:F1:6B:9B:70:F5:AB:E7:47:0F` |
+| Firestore rules file | `firestore.rules` |
+
+**Status (2026-07-02):** Firebase Analytics confirmed live on physical device (SM A245F, Android 16) — logcat `Status Code: 200`. Google Sign-In UI and Firestore backup UI flows not yet manually smoke-tested.
+
 ---
 
 ## 🏗️ Architecture

@@ -61,7 +61,7 @@ flutter run
 
 # Run the full test suite
 flutter test
-# → 538 tests passed
+# → 535 tests passed
 
 # Static analysis
 flutter analyze

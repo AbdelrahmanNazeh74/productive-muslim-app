@@ -14,12 +14,34 @@ Real Google Sign-In, anonymous auth, Firestore backup, Firebase Analytics, and C
 **Firebase project:** `productive-muslim-app` (free Spark plan)
 **Android package / iOS bundle:** `com.productivemuslim.app`
 
-**One remaining action before Google Sign-In works on Android:**
-Register the debug SHA-1 fingerprint in Firebase Console → Project Settings → Your Android app → Add fingerprint:
+**SHA-1 fingerprint is registered in Firebase Console.** ✅ (registered 2026-07-02)
 ```
 SHA-1: FD:D7:6D:F6:99:76:4E:22:28:8B:69:F1:6B:9B:70:F5:AB:E7:47:0F
 ```
-Run `tool\get_sha_fingerprints.bat` (Windows) or `bash tool/get_sha_fingerprints.sh` (Mac/Linux) to get fingerprints for other machines. See `docs/SHA_FINGERPRINTS.md` for full instructions.
+On a different dev machine, run `tool\get_sha_fingerprints.bat` (Windows) or `bash tool/get_sha_fingerprints.sh` (Mac/Linux) to get its fingerprint and register it. See `docs/SHA_FINGERPRINTS.md`.
+
+**Firebase Analytics confirmed live** via logcat on physical device (SM A245F, Android 16):
+`TRuntime.CctTransportBackend → firebaselogging-pa.googleapis.com → Status Code: 200`
+
+**Pending manual verification** (functionality is wired — UI flows not yet smoke-tested):
+- Google Sign-In: tap "Continue with Google" → account picker → should land on dashboard
+- Firestore backup: Settings → Data → Cloud Backup → Back Up Now → verify Firestore document created
+- Anonymous auth: tap "Continue as Guest" → verify anonymous session in Firebase Auth console
+- Crashlytics: enable DebugView with `adb shell setprop debug.firebase.analytics.app com.productivemuslim.app`
+
+**Firebase Project Details:**
+
+| Field | Value |
+|---|---|
+| Project ID | `productive-muslim-app` |
+| Project number | `533062204398` |
+| Android package | `com.productivemuslim.app` |
+| iOS bundle ID | `com.productivemuslim.app` |
+| Android OAuth client | `533062204398-5vl2som8t00odojtimho0c0jdjpor361` |
+| iOS client ID | `533062204398-nlivanpobs0fmomgp9omh5k4la5eo1sj` |
+| REVERSED_CLIENT_ID | `com.googleusercontent.apps.533062204398-nlivanpobs0fmomgp9omh5k4la5eo1sj` |
+| Storage bucket | `productive-muslim-app.firebasestorage.app` |
+| Firestore rules | `firestore.rules` (deployed via `firebase deploy --only firestore:rules`) |
 
 **How the runtime switch works:**
 `EnvironmentConfig.initializeIfAvailable()` in `main()` calls `Firebase.initializeApp()` in a try/catch. On success, `_firebaseAvailable = true` and Firebase repositories are injected. On any failure (missing config, network error, test environment) the app silently falls back to mock repositories — no crash, no user-visible error.
