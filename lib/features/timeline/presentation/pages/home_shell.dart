@@ -54,6 +54,7 @@ class _HomeShellState extends State<HomeShell> {
     // ── Tablet: NavigationRail on the side ───────────────────────────────────
     if (context.isTablet) {
       final extended = context.isLandscape;
+      final cs = Theme.of(context).colorScheme;
       return Scaffold(
         body: Row(
           children: [
@@ -66,25 +67,25 @@ class _HomeShellState extends State<HomeShell> {
               extended: extended,
               backgroundColor: isRamadan
                   ? const Color(0xFF0D1B2A)
-                  : AppColors.surface,
+                  : cs.surface,
               selectedIconTheme: IconThemeData(
-                color: isRamadan ? AppColors.gold : AppColors.primary,
+                color: isRamadan ? AppColors.gold : cs.primary,
               ),
               unselectedIconTheme: IconThemeData(
-                color: isRamadan ? Colors.white38 : AppColors.textHint,
+                color: isRamadan ? Colors.white38 : cs.onSurfaceVariant,
               ),
               selectedLabelTextStyle: AppTextStyles.labelSmall.copyWith(
-                color: isRamadan ? AppColors.gold : AppColors.primary,
+                color: isRamadan ? AppColors.gold : cs.primary,
                 fontWeight: FontWeight.w700,
                 fontSize: 11,
               ),
               unselectedLabelTextStyle: AppTextStyles.labelSmall.copyWith(
-                color: isRamadan ? Colors.white38 : AppColors.textHint,
+                color: isRamadan ? Colors.white38 : cs.onSurfaceVariant,
                 fontSize: 11,
               ),
               indicatorColor: isRamadan
                   ? AppColors.gold.withValues(alpha: 0.15)
-                  : AppColors.primary.withValues(alpha: 0.08),
+                  : cs.primary.withValues(alpha: 0.08),
               destinations: navItems
                   .map((item) => NavigationRailDestination(
                         icon: Icon(item.icon),
@@ -140,17 +141,17 @@ class _BottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Adaptive horizontal padding — prevents overflow when 5 tabs on 360px
     final hPad = Responsive.navItemHPadding(context, items.length);
+    final cs = Theme.of(context).colorScheme;
 
     return Container(
       decoration: BoxDecoration(
-        color: isRamadanMode ? const Color(0xFF0D1B2A) : AppColors.surface,
+        color: isRamadanMode ? const Color(0xFF0D1B2A) : cs.surface,
         border: Border(
           top: BorderSide(
             color: isRamadanMode
                 ? Colors.white.withValues(alpha: 0.08)
-                : AppColors.surfaceVariant,
+                : cs.outlineVariant,
             width: 1,
           ),
         ),
@@ -185,15 +186,16 @@ class _BottomNav extends StatelessWidget {
                       color: isActive
                           ? (isRamadanTab
                               ? AppColors.gold.withValues(alpha: 0.15)
-                              : AppColors.primary.withValues(alpha: 0.08))
+                              : cs.primary.withValues(alpha: 0.08))
                           : Colors.transparent,
-                      borderRadius:
-                          BorderRadius.circular(AppRadius.full),
+                      borderRadius: BorderRadius.circular(AppRadius.full),
                     ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         _buildTabIcon(
+                          context: context,
+                          cs: cs,
                           item: item,
                           isActive: isActive,
                           isRamadanTab: isRamadanTab,
@@ -207,10 +209,10 @@ class _BottomNav extends StatelessWidget {
                                     ? AppColors.gold
                                     : (isRamadanMode
                                         ? Colors.white
-                                        : AppColors.primary))
+                                        : cs.primary))
                                 : (isRamadanMode
                                     ? Colors.white38
-                                    : AppColors.textHint),
+                                    : cs.onSurfaceVariant),
                             fontSize: 10,
                             fontWeight: isActive
                                 ? FontWeight.w700
@@ -232,12 +234,25 @@ class _BottomNav extends StatelessWidget {
   }
 
   Widget _buildTabIcon({
+    required BuildContext context,
+    required ColorScheme cs,
     required _NavItem item,
     required bool isActive,
     required bool isRamadanTab,
   }) {
     final isProfileTab = item.label == 'Profile';
     if (isProfileTab && authUser != null) {
+      // Show network photo when available (BUG 1 fix)
+      final photoUrl = authUser!.photoUrl;
+      if (photoUrl != null && photoUrl.isNotEmpty) {
+        return CircleAvatar(
+          radius: 12,
+          backgroundImage: NetworkImage(photoUrl),
+          onBackgroundImageError: (_, __) {},
+          backgroundColor: cs.primary.withValues(alpha: 0.3),
+        );
+      }
+      // Fallback: initial letter avatar
       final initial = (authUser!.displayName?.isNotEmpty == true
               ? authUser!.displayName!
               : authUser!.email)
@@ -245,9 +260,8 @@ class _BottomNav extends StatelessWidget {
           .toUpperCase();
       return CircleAvatar(
         radius: 12,
-        backgroundColor: isActive
-            ? AppColors.primary
-            : AppColors.primary.withValues(alpha: 0.3),
+        backgroundColor:
+            isActive ? cs.primary : cs.primary.withValues(alpha: 0.3),
         child: Text(
           initial,
           style: AppTextStyles.labelSmall.copyWith(
@@ -263,8 +277,8 @@ class _BottomNav extends StatelessWidget {
       color: isActive
           ? (isRamadanTab
               ? AppColors.gold
-              : (isRamadanMode ? Colors.white : AppColors.primary))
-          : (isRamadanMode ? Colors.white38 : AppColors.textHint),
+              : (isRamadanMode ? Colors.white : cs.primary))
+          : (isRamadanMode ? Colors.white38 : cs.onSurfaceVariant),
       size: 24,
     );
   }

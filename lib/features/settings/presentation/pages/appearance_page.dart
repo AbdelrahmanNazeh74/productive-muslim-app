@@ -9,11 +9,12 @@ class AppearancePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bg = Theme.of(context).scaffoldBackgroundColor;
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: bg,
       appBar: AppBar(
         title: const Text('Appearance'),
-        backgroundColor: AppColors.background,
+        backgroundColor: bg,
         elevation: 0,
       ),
       body: BlocBuilder<SettingsBloc, SettingsState>(
@@ -29,8 +30,8 @@ class AppearancePage extends StatelessWidget {
           return ListView(
             padding: const EdgeInsets.all(16),
             children: [
-              _sectionLabel('Theme'),
-              _buildCard(children: [
+              _sectionLabel(context, 'Theme'),
+              _buildCard(context, children: [
                 _buildThemeOption(
                   context,
                   mode: 'light',
@@ -39,7 +40,7 @@ class AppearancePage extends StatelessWidget {
                   subtitle: 'Classic bright interface',
                   selected: s.themeMode == 'light',
                 ),
-                _divider(),
+                _divider(context),
                 _buildThemeOption(
                   context,
                   mode: 'dark',
@@ -48,7 +49,7 @@ class AppearancePage extends StatelessWidget {
                   subtitle: 'Easy on the eyes at night',
                   selected: s.themeMode == 'dark',
                 ),
-                _divider(),
+                _divider(context),
                 _buildThemeOption(
                   context,
                   mode: 'system',
@@ -59,9 +60,10 @@ class AppearancePage extends StatelessWidget {
                 ),
               ]),
               const SizedBox(height: 16),
-              _sectionLabel('Date & Time'),
-              _buildCard(children: [
+              _sectionLabel(context, 'Date & Time'),
+              _buildCard(context, children: [
                 _buildToggleTile(
+                  context,
                   icon: Icons.calendar_today_outlined,
                   iconColor: const Color(0xFF1B6B3A),
                   title: 'Show Hijri Date',
@@ -71,10 +73,11 @@ class AppearancePage extends StatelessWidget {
                       .read<SettingsBloc>()
                       .add(SettingsHijriDisplayToggled(v)),
                 ),
-                _divider(),
+                _divider(context),
                 _buildToggleTile(
+                  context,
                   icon: Icons.access_time_outlined,
-                  iconColor: AppColors.primary,
+                  iconColor: Theme.of(context).colorScheme.primary,
                   title: '24-Hour Time',
                   subtitle: 'Use 14:30 instead of 2:30 PM',
                   value: s.show24HourTime,
@@ -84,15 +87,15 @@ class AppearancePage extends StatelessWidget {
                 ),
               ]),
               const SizedBox(height: 16),
-              _sectionLabel('Language'),
-              _buildCard(children: [
+              _sectionLabel(context, 'Language'),
+              _buildCard(context, children: [
                 _buildLanguageOption(
                   context,
                   code: 'en',
                   label: 'English',
                   selected: s.language == 'en',
                 ),
-                _divider(),
+                _divider(context),
                 _buildLanguageOption(
                   context,
                   code: 'ar',
@@ -108,22 +111,26 @@ class AppearancePage extends StatelessWidget {
     );
   }
 
-  Widget _sectionLabel(String title) {
+  Widget _sectionLabel(BuildContext context, String title) {
+    final cs = Theme.of(context).colorScheme;
     return Padding(
       padding: const EdgeInsets.only(left: 4, bottom: 8),
       child: Text(
         title.toUpperCase(),
-        style: AppTextStyles.labelSmall
-            .copyWith(color: AppColors.textHint, letterSpacing: 1.2),
+        style: AppTextStyles.labelSmall.copyWith(
+          color: cs.onSurface.withValues(alpha: 0.5),
+          letterSpacing: 1.2,
+        ),
       ),
     );
   }
 
-  Widget _buildCard({required List<Widget> children}) {
+  Widget _buildCard(BuildContext context, {required List<Widget> children}) {
+    final cs = Theme.of(context).colorScheme;
     return Container(
       margin: const EdgeInsets.only(bottom: 4),
       decoration: BoxDecoration(
-        color: AppColors.surface,
+        color: cs.surface,
         borderRadius: BorderRadius.circular(AppRadius.lg),
         boxShadow: [
           BoxShadow(
@@ -137,8 +144,14 @@ class AppearancePage extends StatelessWidget {
     );
   }
 
-  Widget _divider() =>
-      const Divider(height: 1, indent: 56, color: AppColors.surfaceVariant);
+  Widget _divider(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    return Divider(
+      height: 1,
+      indent: 56,
+      color: cs.outlineVariant.withValues(alpha: 0.5),
+    );
+  }
 
   Widget _buildThemeOption(
     BuildContext context, {
@@ -148,6 +161,7 @@ class AppearancePage extends StatelessWidget {
     required String subtitle,
     required bool selected,
   }) {
+    final cs = Theme.of(context).colorScheme;
     return InkWell(
       onTap: () => context
           .read<SettingsBloc>()
@@ -161,14 +175,14 @@ class AppearancePage extends StatelessWidget {
               height: 36,
               decoration: BoxDecoration(
                 color: selected
-                    ? AppColors.primary.withValues(alpha: 0.12)
-                    : AppColors.surfaceVariant,
+                    ? cs.primary.withValues(alpha: 0.12)
+                    : cs.surfaceContainerHighest,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(
                 icon,
                 size: 20,
-                color: selected ? AppColors.primary : AppColors.textSecondary,
+                color: selected ? cs.primary : cs.onSurfaceVariant,
               ),
             ),
             const SizedBox(width: 14),
@@ -179,21 +193,23 @@ class AppearancePage extends StatelessWidget {
                   Text(
                     label,
                     style: AppTextStyles.labelLarge.copyWith(
-                      color: selected
-                          ? AppColors.primary
-                          : AppColors.textPrimary,
+                      color: selected ? cs.primary : cs.onSurface,
                     ),
                   ),
-                  Text(subtitle, style: AppTextStyles.bodyMedium),
+                  Text(
+                    subtitle,
+                    style: AppTextStyles.bodyMedium.copyWith(
+                      color: cs.onSurfaceVariant,
+                    ),
+                  ),
                 ],
               ),
             ),
             if (selected)
-              const Icon(Icons.check_circle,
-                  color: AppColors.primary, size: 22)
+              Icon(Icons.check_circle, color: cs.primary, size: 22)
             else
-              const Icon(Icons.radio_button_unchecked,
-                  color: AppColors.textHint, size: 22),
+              Icon(Icons.radio_button_unchecked,
+                  color: cs.onSurface.withValues(alpha: 0.4), size: 22),
           ],
         ),
       ),
@@ -206,6 +222,7 @@ class AppearancePage extends StatelessWidget {
     required String label,
     required bool selected,
   }) {
+    final cs = Theme.of(context).colorScheme;
     return InkWell(
       onTap: () => context
           .read<SettingsBloc>()
@@ -219,8 +236,8 @@ class AppearancePage extends StatelessWidget {
               height: 36,
               decoration: BoxDecoration(
                 color: selected
-                    ? AppColors.primary.withValues(alpha: 0.12)
-                    : AppColors.surfaceVariant,
+                    ? cs.primary.withValues(alpha: 0.12)
+                    : cs.surfaceContainerHighest,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Center(
@@ -229,7 +246,7 @@ class AppearancePage extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
-                    color: selected ? AppColors.primary : AppColors.textSecondary,
+                    color: selected ? cs.primary : cs.onSurfaceVariant,
                   ),
                 ),
               ),
@@ -239,22 +256,23 @@ class AppearancePage extends StatelessWidget {
               child: Text(
                 label,
                 style: AppTextStyles.labelLarge.copyWith(
-                  color: selected ? AppColors.primary : AppColors.textPrimary,
+                  color: selected ? cs.primary : cs.onSurface,
                 ),
               ),
             ),
             if (selected)
-              const Icon(Icons.check_circle, color: AppColors.primary, size: 22)
+              Icon(Icons.check_circle, color: cs.primary, size: 22)
             else
-              const Icon(Icons.radio_button_unchecked,
-                  color: AppColors.textHint, size: 22),
+              Icon(Icons.radio_button_unchecked,
+                  color: cs.onSurface.withValues(alpha: 0.4), size: 22),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildToggleTile({
+  Widget _buildToggleTile(
+    BuildContext context, {
     required IconData icon,
     required Color iconColor,
     required String title,
@@ -262,6 +280,7 @@ class AppearancePage extends StatelessWidget {
     required bool value,
     required ValueChanged<bool> onChanged,
   }) {
+    final cs = Theme.of(context).colorScheme;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: Row(
@@ -280,15 +299,25 @@ class AppearancePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: AppTextStyles.labelLarge),
-                Text(subtitle, style: AppTextStyles.bodyMedium),
+                Text(
+                  title,
+                  style: AppTextStyles.labelLarge.copyWith(
+                    color: cs.onSurface,
+                  ),
+                ),
+                Text(
+                  subtitle,
+                  style: AppTextStyles.bodyMedium.copyWith(
+                    color: cs.onSurfaceVariant,
+                  ),
+                ),
               ],
             ),
           ),
           Switch(
             value: value,
             onChanged: onChanged,
-            activeTrackColor: AppColors.primary,
+            activeTrackColor: cs.primary,
           ),
         ],
       ),

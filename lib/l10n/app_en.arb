@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "@@last_modified": "2026-06-29",
+  "@@last_modified": "2026-07-03",
 
   "appTitle": "Productive Muslim",
   "@appTitle": { "description": "App name shown in the title bar" },
@@ -17,11 +17,38 @@
   "tabSettings": "Settings",
   "@tabSettings": { "description": "Bottom nav: Settings tab" },
 
+  "tabTimeline": "Timeline",
+  "@tabTimeline": { "description": "Bottom nav label: timeline" },
+
+  "tabRamadan": "Ramadan",
+  "@tabRamadan": { "description": "Bottom nav label: Ramadan tab" },
+
+  "tabProfile": "Profile",
+  "@tabProfile": { "description": "Bottom nav label: profile/settings" },
+
   "onboardingWelcomeTitle": "Assalamu Alaikum",
   "@onboardingWelcomeTitle": { "description": "First onboarding step title" },
 
   "onboardingWelcomeSubtitle": "Let's build your productive Muslim life",
   "@onboardingWelcomeSubtitle": { "description": "First onboarding step subtitle" },
+
+  "onboardingGetStarted": "Get Started",
+  "@onboardingGetStarted": { "description": "Onboarding CTA button" },
+
+  "onboardingOccupation": "Occupation",
+  "@onboardingOccupation": { "description": "Onboarding step 2 title" },
+
+  "onboardingWorkSchedule": "Work Schedule",
+  "@onboardingWorkSchedule": { "description": "Onboarding step 3 label" },
+
+  "onboardingPrayerSettings": "Prayer Times",
+  "@onboardingPrayerSettings": { "description": "Onboarding step 4 title" },
+
+  "onboardingFitnessGoals": "Fitness Goals",
+  "@onboardingFitnessGoals": { "description": "Onboarding step 5 title" },
+
+  "onboardingSleepQuran": "Sleep & Quran",
+  "@onboardingSleepQuran": { "description": "Onboarding step 6 title" },
 
   "settingsTitle": "Settings",
   "@settingsTitle": { "description": "Settings page title" },
@@ -34,6 +61,9 @@
 
   "prayerTimesTitle": "Prayer Times",
   "@prayerTimesTitle": { "description": "Prayer times sub-page title" },
+
+  "profileTitle": "Edit Profile",
+  "@profileTitle": { "description": "Profile edit page title" },
 
   "buttonSave": "Save",
   "@buttonSave": { "description": "Generic save button" },
@@ -50,8 +80,62 @@
   "buttonRetry": "Retry",
   "@buttonRetry": { "description": "Retry after an error" },
 
+  "buttonBack": "Back",
+  "@buttonBack": { "description": "Back navigation button" },
+
+  "buttonSkip": "Skip",
+  "@buttonSkip": { "description": "Skip optional step" },
+
+  "buttonSignOut": "Sign Out",
+  "@buttonSignOut": { "description": "Sign out button" },
+
+  "prayerFajr": "Fajr",
+  "@prayerFajr": { "description": "Fajr prayer name" },
+
+  "prayerDhuhr": "Dhuhr",
+  "@prayerDhuhr": { "description": "Dhuhr prayer name" },
+
+  "prayerAsr": "Asr",
+  "@prayerAsr": { "description": "Asr prayer name" },
+
+  "prayerMaghrib": "Maghrib",
+  "@prayerMaghrib": { "description": "Maghrib prayer name" },
+
+  "prayerIsha": "Isha",
+  "@prayerIsha": { "description": "Isha prayer name" },
+
+  "prayerNext": "Next prayer",
+  "@prayerNext": { "description": "Label above the next prayer countdown" },
+
+  "todaySchedule": "Today's Schedule",
+  "@todaySchedule": { "description": "Timeline page header" },
+
+  "goodMorning": "Good Morning",
+  "@goodMorning": { "description": "Morning greeting" },
+
+  "goodEvening": "Good Evening",
+  "@goodEvening": { "description": "Evening greeting" },
+
+  "markComplete": "Mark Complete",
+  "@markComplete": { "description": "Button to mark a block as complete" },
+
+  "timeRemaining": "Time Remaining",
+  "@timeRemaining": { "description": "Countdown label" },
+
+  "myHabits": "My Habits",
+  "@myHabits": { "description": "Habits page title" },
+
+  "weeklyScore": "Weekly Score",
+  "@weeklyScore": { "description": "Habits score tab label" },
+
   "habitCompleted": "Done today",
   "@habitCompleted": { "description": "Habit completion status label" },
+
+  "habitMissed": "Missed",
+  "@habitMissed": { "description": "Habit missed status label" },
+
+  "habitExcellent": "Excellent",
+  "@habitExcellent": { "description": "Habit excellent rating label" },
 
   "habitStreak": "{count, plural, =1{1 day streak} other{{count} day streak}}",
   "@habitStreak": {
@@ -61,8 +145,80 @@
     }
   },
 
-  "prayerNext": "Next prayer",
-  "@prayerNext": { "description": "Label above the next prayer countdown" },
+  "ramadanMode": "Ramadan Mode",
+  "@ramadanMode": { "description": "Ramadan mode toggle label" },
+
+  "suhoor": "Suhoor",
+  "@suhoor": { "description": "Suhoor meal label" },
+
+  "iftar": "Iftar",
+  "@iftar": { "description": "Iftar meal label" },
+
+  "tarawih": "Tarawih",
+  "@tarawih": { "description": "Tarawih prayer label" },
+
+  "timeToIftar": "Time to Iftar",
+  "@timeToIftar": { "description": "Countdown to iftar label" },
+
+  "language": "Language",
+  "@language": { "description": "Language setting label" },
+
+  "darkMode": "Dark Mode",
+  "@darkMode": { "description": "Dark mode theme option label" },
+
+  "lightMode": "Light Mode",
+  "@lightMode": { "description": "Light mode theme option label" },
+
+  "systemDefault": "System Default",
+  "@systemDefault": { "description": "Follow system theme label" },
+
+  "signInWithGoogle": "Continue with Google",
+  "@signInWithGoogle": { "description": "Google sign-in button label" },
+
+  "continueAsGuest": "Continue as Guest",
+  "@continueAsGuest": { "description": "Guest sign-in button label" },
+
+  "cloudBackup": "Cloud Backup",
+  "@cloudBackup": { "description": "Cloud backup section title" },
+
+  "backUpNow": "Back Up Now",
+  "@backUpNow": { "description": "Trigger backup button" },
+
+  "lastBackup": "Last backup",
+  "@lastBackup": { "description": "Last backup timestamp label" },
+
+  "analyticsOverview": "Overview",
+  "@analyticsOverview": { "description": "Analytics tab: overview" },
+
+  "analyticsPrayers": "Prayers",
+  "@analyticsPrayers": { "description": "Analytics tab: prayers" },
+
+  "analyticsHabits": "Habits",
+  "@analyticsHabits": { "description": "Analytics tab: habits" },
+
+  "thisWeek": "This Week",
+  "@thisWeek": { "description": "Period selector: this week" },
+
+  "thisMonth": "This Month",
+  "@thisMonth": { "description": "Period selector: this month" },
+
+  "last3Months": "Last 3 Months",
+  "@last3Months": { "description": "Period selector: last 3 months" },
+
+  "loading": "Loading...",
+  "@loading": { "description": "Generic loading label" },
+
+  "errorGeneric": "Something went wrong",
+  "@errorGeneric": { "description": "Generic error message" },
+
+  "locationNotSet": "Location not set — please update your location in Settings.",
+  "@locationNotSet": { "description": "Error shown when prayer times cannot be calculated" },
+
+  "minutes": "min",
+  "@minutes": { "description": "Minutes abbreviation" },
+
+  "hours": "h",
+  "@hours": { "description": "Hours abbreviation" },
 
   "splashTagline": "Balance. Worship. Grow.",
   "@splashTagline": { "description": "Tagline shown on the splash screen" }

@@ -19,8 +19,8 @@ void main() {
       expect(result.isRight(), isTrue);
       final user = result.getOrElse(() => throw Exception());
       expect(user.id, 'mock_google_user_001');
-      expect(user.email, 'user@productivemuslim.app');
-      expect(user.displayName, 'Productive Muslim');
+      expect(user.email, 'test@mock.com');
+      expect(user.displayName, 'Test User (Mock)');
       expect(user.isAnonymous, isFalse);
     });
 

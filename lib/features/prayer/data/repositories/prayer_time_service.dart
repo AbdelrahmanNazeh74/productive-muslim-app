@@ -42,6 +42,11 @@ class PrayerTimeService {
     required UserProfile profile,
     required DateTime date,
   }) {
+    if (profile.latitude == 0.0 && profile.longitude == 0.0) {
+      return const Left(ValidationFailure(
+        'Location not set — please update your location in Settings.',
+      ));
+    }
     try {
       final coordinates =
           adhan.Coordinates(profile.latitude, profile.longitude);

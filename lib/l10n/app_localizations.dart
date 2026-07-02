@@ -128,6 +128,24 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get tabSettings;
 
+  /// Bottom nav label: timeline
+  ///
+  /// In en, this message translates to:
+  /// **'Timeline'**
+  String get tabTimeline;
+
+  /// Bottom nav label: Ramadan tab
+  ///
+  /// In en, this message translates to:
+  /// **'Ramadan'**
+  String get tabRamadan;
+
+  /// Bottom nav label: profile/settings
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get tabProfile;
+
   /// First onboarding step title
   ///
   /// In en, this message translates to:
@@ -139,6 +157,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Let\'s build your productive Muslim life'**
   String get onboardingWelcomeSubtitle;
+
+  /// Onboarding CTA button
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get onboardingGetStarted;
+
+  /// Onboarding step 2 title
+  ///
+  /// In en, this message translates to:
+  /// **'Occupation'**
+  String get onboardingOccupation;
+
+  /// Onboarding step 3 label
+  ///
+  /// In en, this message translates to:
+  /// **'Work Schedule'**
+  String get onboardingWorkSchedule;
+
+  /// Onboarding step 4 title
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer Times'**
+  String get onboardingPrayerSettings;
+
+  /// Onboarding step 5 title
+  ///
+  /// In en, this message translates to:
+  /// **'Fitness Goals'**
+  String get onboardingFitnessGoals;
+
+  /// Onboarding step 6 title
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep & Quran'**
+  String get onboardingSleepQuran;
 
   /// Settings page title
   ///
@@ -163,6 +217,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Prayer Times'**
   String get prayerTimesTitle;
+
+  /// Profile edit page title
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Profile'**
+  String get profileTitle;
 
   /// Generic save button
   ///
@@ -194,11 +254,119 @@ abstract class AppLocalizations {
   /// **'Retry'**
   String get buttonRetry;
 
+  /// Back navigation button
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get buttonBack;
+
+  /// Skip optional step
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get buttonSkip;
+
+  /// Sign out button
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Out'**
+  String get buttonSignOut;
+
+  /// Fajr prayer name
+  ///
+  /// In en, this message translates to:
+  /// **'Fajr'**
+  String get prayerFajr;
+
+  /// Dhuhr prayer name
+  ///
+  /// In en, this message translates to:
+  /// **'Dhuhr'**
+  String get prayerDhuhr;
+
+  /// Asr prayer name
+  ///
+  /// In en, this message translates to:
+  /// **'Asr'**
+  String get prayerAsr;
+
+  /// Maghrib prayer name
+  ///
+  /// In en, this message translates to:
+  /// **'Maghrib'**
+  String get prayerMaghrib;
+
+  /// Isha prayer name
+  ///
+  /// In en, this message translates to:
+  /// **'Isha'**
+  String get prayerIsha;
+
+  /// Label above the next prayer countdown
+  ///
+  /// In en, this message translates to:
+  /// **'Next prayer'**
+  String get prayerNext;
+
+  /// Timeline page header
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s Schedule'**
+  String get todaySchedule;
+
+  /// Morning greeting
+  ///
+  /// In en, this message translates to:
+  /// **'Good Morning'**
+  String get goodMorning;
+
+  /// Evening greeting
+  ///
+  /// In en, this message translates to:
+  /// **'Good Evening'**
+  String get goodEvening;
+
+  /// Button to mark a block as complete
+  ///
+  /// In en, this message translates to:
+  /// **'Mark Complete'**
+  String get markComplete;
+
+  /// Countdown label
+  ///
+  /// In en, this message translates to:
+  /// **'Time Remaining'**
+  String get timeRemaining;
+
+  /// Habits page title
+  ///
+  /// In en, this message translates to:
+  /// **'My Habits'**
+  String get myHabits;
+
+  /// Habits score tab label
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly Score'**
+  String get weeklyScore;
+
   /// Habit completion status label
   ///
   /// In en, this message translates to:
   /// **'Done today'**
   String get habitCompleted;
+
+  /// Habit missed status label
+  ///
+  /// In en, this message translates to:
+  /// **'Missed'**
+  String get habitMissed;
+
+  /// Habit excellent rating label
+  ///
+  /// In en, this message translates to:
+  /// **'Excellent'**
+  String get habitExcellent;
 
   /// Streak count label on habit cards
   ///
@@ -206,11 +374,155 @@ abstract class AppLocalizations {
   /// **'{count, plural, =1{1 day streak} other{{count} day streak}}'**
   String habitStreak(int count);
 
-  /// Label above the next prayer countdown
+  /// Ramadan mode toggle label
   ///
   /// In en, this message translates to:
-  /// **'Next prayer'**
-  String get prayerNext;
+  /// **'Ramadan Mode'**
+  String get ramadanMode;
+
+  /// Suhoor meal label
+  ///
+  /// In en, this message translates to:
+  /// **'Suhoor'**
+  String get suhoor;
+
+  /// Iftar meal label
+  ///
+  /// In en, this message translates to:
+  /// **'Iftar'**
+  String get iftar;
+
+  /// Tarawih prayer label
+  ///
+  /// In en, this message translates to:
+  /// **'Tarawih'**
+  String get tarawih;
+
+  /// Countdown to iftar label
+  ///
+  /// In en, this message translates to:
+  /// **'Time to Iftar'**
+  String get timeToIftar;
+
+  /// Language setting label
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// Dark mode theme option label
+  ///
+  /// In en, this message translates to:
+  /// **'Dark Mode'**
+  String get darkMode;
+
+  /// Light mode theme option label
+  ///
+  /// In en, this message translates to:
+  /// **'Light Mode'**
+  String get lightMode;
+
+  /// Follow system theme label
+  ///
+  /// In en, this message translates to:
+  /// **'System Default'**
+  String get systemDefault;
+
+  /// Google sign-in button label
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get signInWithGoogle;
+
+  /// Guest sign-in button label
+  ///
+  /// In en, this message translates to:
+  /// **'Continue as Guest'**
+  String get continueAsGuest;
+
+  /// Cloud backup section title
+  ///
+  /// In en, this message translates to:
+  /// **'Cloud Backup'**
+  String get cloudBackup;
+
+  /// Trigger backup button
+  ///
+  /// In en, this message translates to:
+  /// **'Back Up Now'**
+  String get backUpNow;
+
+  /// Last backup timestamp label
+  ///
+  /// In en, this message translates to:
+  /// **'Last backup'**
+  String get lastBackup;
+
+  /// Analytics tab: overview
+  ///
+  /// In en, this message translates to:
+  /// **'Overview'**
+  String get analyticsOverview;
+
+  /// Analytics tab: prayers
+  ///
+  /// In en, this message translates to:
+  /// **'Prayers'**
+  String get analyticsPrayers;
+
+  /// Analytics tab: habits
+  ///
+  /// In en, this message translates to:
+  /// **'Habits'**
+  String get analyticsHabits;
+
+  /// Period selector: this week
+  ///
+  /// In en, this message translates to:
+  /// **'This Week'**
+  String get thisWeek;
+
+  /// Period selector: this month
+  ///
+  /// In en, this message translates to:
+  /// **'This Month'**
+  String get thisMonth;
+
+  /// Period selector: last 3 months
+  ///
+  /// In en, this message translates to:
+  /// **'Last 3 Months'**
+  String get last3Months;
+
+  /// Generic loading label
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// Generic error message
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get errorGeneric;
+
+  /// Error shown when prayer times cannot be calculated
+  ///
+  /// In en, this message translates to:
+  /// **'Location not set — please update your location in Settings.'**
+  String get locationNotSet;
+
+  /// Minutes abbreviation
+  ///
+  /// In en, this message translates to:
+  /// **'min'**
+  String get minutes;
+
+  /// Hours abbreviation
+  ///
+  /// In en, this message translates to:
+  /// **'h'**
+  String get hours;
 
   /// Tagline shown on the splash screen
   ///

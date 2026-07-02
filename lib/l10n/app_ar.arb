@@ -1,42 +1,59 @@
 {
   "@@locale": "ar",
-  "@@last_modified": "2026-06-29",
-
-  "@@NOTE": "Only 20 strings translated here — extend this file to complete Arabic support. All remaining strings fall back to English automatically.",
+  "@@last_modified": "2026-07-03",
 
   "appTitle": "المسلم المنتج",
 
   "tabHome": "الرئيسية",
-
   "tabHabits": "العادات",
-
   "tabAnalytics": "التحليلات",
-
   "tabSettings": "الإعدادات",
+  "tabTimeline": "الجدول اليومي",
+  "tabRamadan": "رمضان",
+  "tabProfile": "الملف الشخصي",
 
   "onboardingWelcomeTitle": "السلام عليكم",
-
   "onboardingWelcomeSubtitle": "لنبني حياتك الإسلامية المنتجة",
+  "onboardingGetStarted": "ابدأ الآن",
+  "onboardingOccupation": "المهنة",
+  "onboardingWorkSchedule": "جدول العمل",
+  "onboardingPrayerSettings": "مواقيت الصلاة",
+  "onboardingFitnessGoals": "أهداف اللياقة",
+  "onboardingSleepQuran": "النوم والقرآن",
 
   "settingsTitle": "الإعدادات",
-
   "appearanceTitle": "المظهر",
-
   "notificationsTitle": "الإشعارات",
-
   "prayerTimesTitle": "مواقيت الصلاة",
+  "profileTitle": "تعديل الملف الشخصي",
 
   "buttonSave": "حفظ",
-
   "buttonCancel": "إلغاء",
-
   "buttonContinue": "متابعة",
-
   "buttonDone": "تم",
-
   "buttonRetry": "إعادة المحاولة",
+  "buttonBack": "رجوع",
+  "buttonSkip": "تخطي",
+  "buttonSignOut": "تسجيل الخروج",
 
+  "prayerFajr": "الفجر",
+  "prayerDhuhr": "الظهر",
+  "prayerAsr": "العصر",
+  "prayerMaghrib": "المغرب",
+  "prayerIsha": "العشاء",
+  "prayerNext": "الصلاة القادمة",
+
+  "todaySchedule": "جدول اليوم",
+  "goodMorning": "صباح الخير",
+  "goodEvening": "مساء الخير",
+  "markComplete": "تمييز كمكتمل",
+  "timeRemaining": "الوقت المتبقي",
+
+  "myHabits": "عاداتي",
+  "weeklyScore": "النتيجة الأسبوعية",
   "habitCompleted": "تم اليوم",
+  "habitMissed": "فائت",
+  "habitExcellent": "ممتاز",
 
   "habitStreak": "{count, plural, =1{يوم واحد متواصل} =2{يومان متواصلان} other{{count} أيام متواصلة}}",
   "@habitStreak": {
@@ -45,7 +62,36 @@
     }
   },
 
-  "prayerNext": "الصلاة القادمة",
+  "ramadanMode": "وضع رمضان",
+  "suhoor": "السحور",
+  "iftar": "الإفطار",
+  "tarawih": "التراويح",
+  "timeToIftar": "الوقت حتى الإفطار",
+
+  "language": "اللغة",
+  "darkMode": "الوضع الداكن",
+  "lightMode": "الوضع الفاتح",
+  "systemDefault": "إعداد الجهاز",
+
+  "signInWithGoogle": "المتابعة مع Google",
+  "continueAsGuest": "المتابعة كضيف",
+  "cloudBackup": "النسخ الاحتياطي",
+  "backUpNow": "نسخ احتياطي الآن",
+  "lastBackup": "آخر نسخة احتياطية",
+
+  "analyticsOverview": "نظرة عامة",
+  "analyticsPrayers": "الصلوات",
+  "analyticsHabits": "العادات",
+  "thisWeek": "هذا الأسبوع",
+  "thisMonth": "هذا الشهر",
+  "last3Months": "آخر 3 أشهر",
+
+  "loading": "جارٍ التحميل...",
+  "errorGeneric": "حدث خطأ ما",
+  "locationNotSet": "الموقع غير مُحدَّد — يرجى تحديثه من الإعدادات.",
+
+  "minutes": "د",
+  "hours": "س",
 
   "splashTagline": "توازن. عبادة. نمو."
 }

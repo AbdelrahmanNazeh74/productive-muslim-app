@@ -4,10 +4,10 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'core/di/app_dependencies.dart';
 import 'core/di/environment_config.dart';
+import 'l10n/app_localizations.dart';
 import 'core/navigation/app_router.dart';
 import 'core/services/isar_service.dart';
 import 'core/services/prayer_notification_service.dart';
@@ -194,11 +194,7 @@ class _ProductiveMuslimAppState extends State<ProductiveMuslimApp>
             darkTheme: AppTheme.dark,
             themeMode: themeMode,
             locale: locale,
-            localizationsDelegates: const [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: const [
               Locale('en'),
               Locale('ar'),

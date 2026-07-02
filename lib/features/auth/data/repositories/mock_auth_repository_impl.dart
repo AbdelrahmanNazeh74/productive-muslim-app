@@ -33,8 +33,8 @@ class MockAuthRepositoryImpl implements AuthRepository {
         name: 'MockAuthRepository');
     const user = AuthUser(
       id: 'mock_google_user_001',
-      email: 'user@productivemuslim.app',
-      displayName: 'Productive Muslim',
+      email: 'test@mock.com',
+      displayName: 'Test User (Mock)',
       isAnonymous: false,
     );
     await _persist(user);

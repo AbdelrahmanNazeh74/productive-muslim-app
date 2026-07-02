@@ -980,13 +980,14 @@ class _TimelineLoadingShimmerState extends State<TimelineLoadingShimmer>
           padding: const EdgeInsets.all(20),
           child: Column(
             children: List.generate(
-              7,
-              (i) => Container(
-                height: 72,
-                margin: const EdgeInsets.only(bottom: 8),
-                decoration: BoxDecoration(
-                  color: AppColors.surfaceVariant,
-                  borderRadius: BorderRadius.circular(AppRadius.lg),
+              6,
+              (i) => Expanded(
+                child: Container(
+                  margin: EdgeInsets.only(bottom: i < 5 ? 8 : 0),
+                  decoration: BoxDecoration(
+                    color: AppColors.surfaceVariant,
+                    borderRadius: BorderRadius.circular(AppRadius.lg),
+                  ),
                 ),
               ),
             ),

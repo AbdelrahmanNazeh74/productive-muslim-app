@@ -77,7 +77,8 @@ class FirebaseAuthRepositoryImpl implements AuthRepository {
   AuthUser _toAuthUser(fb.User user) => AuthUser(
         id: user.uid,
         email: user.email ?? '',
-        displayName: user.displayName ?? 'User',
+        displayName: user.displayName,
+        photoUrl: user.photoURL,
         isAnonymous: user.isAnonymous,
       );
 }
