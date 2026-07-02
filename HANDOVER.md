@@ -7,6 +7,22 @@
 
 ---
 
+## ✅ 7-AUDIT FINAL PASS (2026-07-03) — commit ff4eea2
+
+Seven audits, all resolved:
+
+| Audit | Status | Change |
+|---|---|---|
+| **AUDIT 1** — Android boot receiver | ✅ Already done | `RECEIVE_BOOT_COMPLETED` + `ScheduledNotificationBootReceiver` already in manifest |
+| **AUDIT 2** — Arabic notification channels | ✅ Fixed | `prayer_notification_service.dart`: locale-aware channel names via `Platform.localeName`; Arabic: أوقات الصلاة / تذكير القرآن / تذكير العادات / وقت الإفطار / عام |
+| **AUDIT 3** — Dark mode for fl_chart widgets | ✅ Fixed | `analytics_widgets.dart` full rewrite: all surface/text/grid colors use `cs = Theme.of(context).colorScheme` tokens; chart data colors (success/gold/error) unchanged (semantic) |
+| **AUDIT 4** — Dark mode for remaining screens | ✅ Fixed | `habits_page.dart`: scaffold bg + tab bar + progress bar + card colors all theme-aware. `ramadan_settings_page.dart`: scaffold bg + section cards + slider + toggle text |
+| **AUDIT 5** — Arabic translation | ✅ Fixed | `habitStreak` now uses full 6-form Arabic ICU plural (=0, =1, =2, few, many, other). 34 new keys in both ARB files: error messages, onboarding validation, habit UI, Ramadan UI, auth, prayer debug |
+| **AUDIT 6** — Performance / dispose() | ✅ Already correct | All StatefulWidgets properly dispose AnimationController/Timer/TextEditingController/etc. `TimelineBloc._tickTimer` cancelled in `close()`. `RamadanBloc` has no Timer (computed property). |
+| **AUDIT 7** — iOS Info.plist | ✅ Fixed | Added `CFBundleLocalizations: [en, ar]`. All required keys verified: NSLocation*, NSUserNotifications*, CFBundleDisplayName, CFBundleIdentifier, REVERSED_CLIENT_ID (no duplicates) |
+
+---
+
 ## ✅ FINAL POLISH (2026-07-03) — commit 53fd2c6
 
 Seven issues identified and resolved in a final audit pass:
